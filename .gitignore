@@ -30,3 +30,7 @@ tests/_output/*
 tests/_support/_generated
 
 config.php
+
+node_modules/*
+
+web/js/bundle.js

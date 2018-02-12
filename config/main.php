@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'name' => 'Countries game',
     'components' => [
         'db' => [
             'class' => 'yii\db\Connection',

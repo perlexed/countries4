@@ -1,0 +1,8 @@
+
+.country-form input.blink-error {
+    background-color: red;
+}
+
+.country-form input.blink-success {
+    background-color: green;
+}
