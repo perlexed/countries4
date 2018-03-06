@@ -10,30 +10,36 @@ class Runner {
     static STATUS_FINISHED = STATUS_FINISHED;
 
     static tickInterval = 1;
-    static timeLimit = 30;
+    static timeLimit = 70;
+    // static timeLimit = 300;
 
     constructor(store) {
 
         this.store = store;
         this.runnerInterval = null;
-        this.elapsedTime = null;
+        this.elapsedTime = 0;
         this._setStatus(Runner.STATUS_IDLE);
 
         this.onTick = this.onTick.bind(this);
     }
 
     start() {
-        if (this.status !== Runner.STATUS_IDLE) {
+        if (this.isRunning()) {
             return;
         }
 
         this.runnerInterval = setInterval(this.onTick, Runner.tickInterval * 1000);
 
+        this.store.dispatch({
+            type: 'SET_ELAPSED_TIME',
+            time: this.elapsedTime,
+        });
+
         this._setStatus(Runner.STATUS_RUNNING);
     }
 
     stop() {
-        if (this.status !== Runner.STATUS_RUNNING) {
+        if (!this.isRunning()) {
             return;
         }
 
@@ -43,8 +49,16 @@ class Runner {
         this._setStatus(Runner.STATUS_FINISHED);
     }
 
+    reset() {
+        this.elapsedTime = 0;
+
+        clearInterval(this.runnerInterval);
+        this.runnerInterval = null;
+
+        this._setStatus(Runner.STATUS_IDLE);
+    }
+
     onTick() {
-        console.log('tick');
         this.elapsedTime += Runner.tickInterval;
 
         this.store.dispatch({
@@ -53,7 +67,6 @@ class Runner {
         });
 
         if (this.elapsedTime === Runner.timeLimit) {
-            console.log('stopping on time limit');
             this.stop();
         }
     }

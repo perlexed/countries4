@@ -7,4 +7,4 @@ use app\assets\GameAsset;
 $this->registerAssetBundle(GameAsset::className());
 
 ?>
-<div id="gameContainer">game container</div>
+<div id="gameContainer"></div>

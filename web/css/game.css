@@ -1,8 +1,24 @@
 
 .country-form input.blink-error {
-    background-color: red;
+    background-color: #FFAAAF;
 }
 
 .country-form input.blink-success {
-    background-color: green;
+    background-color: #C1FFC5;
+}
+
+.country-form input.blink-duplicate {
+    background-color: #FFDD77;
+}
+
+.rest-countries__container {
+    column-count: 3;
+}
+
+.rest-countries__container > div {
+    padding: 3px 0;
+}
+
+.stop-button, .reset-button {
+    margin-left: 10px;
 }

@@ -1,5 +1,7 @@
 
-import isArray from 'lodash/isArray';
+import _isArray from 'lodash/isArray';
+import _filter from 'lodash/filter';
+import _forEach from 'lodash/forEach';
 
 export default class CountryProvider {
 
@@ -198,9 +200,9 @@ export default class CountryProvider {
         return Object.keys(this._preparedList).find(countryCode => {
             const countryData = this._preparedList[countryCode];
 
-            return countryName === countryData.shortName
-                || countryName === countryData.fullName
-                || countryData.aliases.find(alias => countryName === alias);
+            return countryName === CountryProvider.prepareName(countryData.shortName)
+                || countryName === CountryProvider.prepareName(countryData.fullName)
+                || countryData.aliases.find(alias => countryName === CountryProvider.prepareName(alias));
         });
     }
 
@@ -211,12 +213,18 @@ export default class CountryProvider {
 
             return Object.assign(countriesObject, {
                 [countryElement.code]: {
-                    shortName: CountryProvider.prepareName(countryElement.name),
-                    fullName: CountryProvider.prepareName(countryElement.fullName),
-                    aliases: (isArray(aliases) ? aliases : [aliases]).map(CountryProvider.prepareName),
+                    shortName: countryElement.name,
+                    fullName: countryElement.fullName,
+                    aliases: _isArray(aliases) ? aliases : [aliases],
                 }
             });
         }, {})
+    }
+
+    getHumanName(countryCode) {
+        const countryData = this._preparedList[countryCode];
+
+        return countryData.aliases.length ? countryData.aliases[0] : countryData.shortName;
     }
 
     static prepareName(countryName) {
@@ -234,5 +242,14 @@ export default class CountryProvider {
     getByCode(countryCode) {
         return this._sourceList.find(countryData => countryData.code === countryCode);
     }
+
+    getRestCountries(matchedCountriesCodes) {
+        return Object.keys(this._preparedList)
+            .filter(countryCode => matchedCountriesCodes.indexOf(countryCode) === -1)
+            .map(countryCode => this._preparedList[countryCode].aliases.length
+                ? this._preparedList[countryCode].aliases[0]
+                : this._preparedList[countryCode].shortName).sort();
+    }
+
 }
 
