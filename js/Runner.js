@@ -10,17 +10,22 @@ class Runner {
     static STATUS_FINISHED = STATUS_FINISHED;
 
     static tickInterval = 1;
-    static timeLimit = 70;
-    // static timeLimit = 300;
+    static timeLimit = 120;
 
-    constructor(store) {
+    constructor(store, status, elapsedTime) {
 
         this.store = store;
         this.runnerInterval = null;
-        this.elapsedTime = 0;
-        this._setStatus(Runner.STATUS_IDLE);
+
+        this.elapsedTime = elapsedTime;
+        this.status = status;
 
         this.onTick = this.onTick.bind(this);
+
+        if (status === Runner.STATUS_RUNNING) {
+            this.status = Runner.STATUS_RUNNING;
+            this.runnerInterval = setInterval(this.onTick, Runner.tickInterval * 1000);
+        }
     }
 
     start() {

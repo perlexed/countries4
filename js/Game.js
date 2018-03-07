@@ -17,7 +17,7 @@ class Game extends React.Component {
 
         this.countryProvider = new CountryProvider();
 
-        this.runner = new Runner(this.props.store);
+        this.runner = new Runner(this.props.store, this.props.runnerStatus, this.props.elapsedTime);
 
         this.onCountrySubmit = this.onCountrySubmit.bind(this);
     }
@@ -103,13 +103,13 @@ class Game extends React.Component {
                     >Отправить</button>
 
 
-                    {this.runner.status === Runner.STATUS_RUNNING && (
+                    {this.props.runnerStatus === Runner.STATUS_RUNNING && (
                         <button className='btn btn-default stop-button' onClick={() => {
                             this.runner.stop();
                         }}>Закончить</button>
                     )}
 
-                    {this.runner.status === Runner.STATUS_FINISHED && (
+                    {this.props.runnerStatus === Runner.STATUS_FINISHED && (
                         <button className='btn btn-default reset-button' onClick={() => {
                             this.props.resetGame();
                             this.runner.reset();
