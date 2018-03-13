@@ -6,3 +6,5 @@ $config = file_exists(__DIR__ . '/config.php') ?
     require __DIR__ . '/config.php' :
     [];
 ob_end_clean();
+
+return $config;
