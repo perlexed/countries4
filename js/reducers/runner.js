@@ -17,5 +17,13 @@ export default combineReducers({
             default:
                 return state;
         }
+    },
+    gameUid: (state = null, action) => {
+        switch (action.type) {
+            case 'SET_GAME_UID':
+                return action.gameUid;
+            default:
+                return state;
+        }
     }
 });

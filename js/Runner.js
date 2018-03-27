@@ -40,6 +40,11 @@ class Runner {
             time: this.elapsedTime,
         });
 
+        this.store.dispatch({
+            type: 'SET_GAME_UID',
+            gameUid: Runner._getUuid(),
+        });
+
         this._setStatus(Runner.STATUS_RUNNING);
     }
 
@@ -94,6 +99,21 @@ class Runner {
             type: 'SET_STATUS',
             status,
         });
+
+        if (status === Runner.STATUS_IDLE) {
+            this.store.dispatch({
+                type: 'SET_GAME_UID',
+                gameUid: null,
+            });
+        }
+    }
+
+    static _getUuid() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
+            .replace(/[xy]/g, c => {
+                const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
     }
 }
 

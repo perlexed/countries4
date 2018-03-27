@@ -185,6 +185,14 @@ export default class CountryProvider {
         this._preparedList = this.prepareList(this._sourceList);
     }
 
+    /**
+     * Checks whether the given countryName corresponds to any real countries
+     *
+     * If country is found, then return it's country code. Return null otherwise
+     *
+     * @param {string} countryName
+     * @returns null|string
+     */
     check(countryName) {
 
         if (!countryName) {

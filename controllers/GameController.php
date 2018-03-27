@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 
+use app\models\Action;
 use app\models\User;
 use yii\web\Controller;
 use yii\web\Response;
@@ -31,25 +32,23 @@ class GameController extends Controller
         return $this->render('index');
     }
 
-    public function actionApiSendCountry()
+    public function actionApiLogAction()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
+        $post = \Yii::$app->request->post();
+
+        $action = new Action([
+            'userId' => \Yii::$app->user->getIdentity()->getId(),
+            'gameUid' => \Yii::$app->request->post('gameUid'),
+            'actionType' => \Yii::$app->request->post('actionType'),
+        ]);
+
+        $action->save();
+
         return [
-            'checkResult' => $this->checkCountry(Yii::$app->request->post('country')) === true,
+            'userId' => \Yii::$app->user->getIdentity()->getId(),
         ];
     }
 
-    protected function checkCountry($countryInputString)
-    {
-        if (!$countryInputString) {
-            return false;
-        }
-
-        return in_array($countryInputString, [
-            'qwe',
-            'asd',
-            'zxc',
-        ]);
-    }
 }

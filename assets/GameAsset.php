@@ -30,8 +30,10 @@ class GameAsset extends AssetBundle
         parent::registerAssetFiles($view);
 
         $countriesJson = file_get_contents(__DIR__ . '/../countriesList/countries.json');
+        $userUid = \Yii::$app->user->getIdentity()->getAuthKey();
 
         $view->registerJs("window.COUNTRIES_LIST = {$countriesJson};", $view::POS_HEAD);
+        $view->registerJs("window.USER_UID = '{$userUid}';", $view::POS_HEAD);
     }
 
 }

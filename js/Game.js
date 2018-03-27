@@ -4,11 +4,17 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import Runner from './Runner';
 import CountryProvider from './CountryProvider';
+import PropTypes from 'prop-types';
 
 class Game extends React.Component {
 
-    constructor() {
-        super(...arguments);
+    static propTypes = {
+        runnerStatus: PropTypes.string,
+        userUid: PropTypes.string,
+    };
+
+    constructor(props) {
+        super(props);
 
         this.state = {
             countriesInput: '',
@@ -40,14 +46,14 @@ class Game extends React.Component {
         const matchedCountryCode = this.countryProvider.check(this.state.countriesInput);
         const isDuplicate = matchedCountryCode && this.props.matchedCountries.indexOf(matchedCountryCode) !== -1;
 
-        const blinkType = !matchedCountryCode
+        const checkResult = !matchedCountryCode
             ? 'error'
             : (isDuplicate
                 ? 'duplicate'
                 : 'success'
             );
 
-        this.inputFieldBlink(blinkType);
+        this.inputFieldBlink(checkResult);
 
         if (matchedCountryCode && !isDuplicate) {
             this.props.onCountryMatch(matchedCountryCode);
@@ -57,18 +63,6 @@ class Game extends React.Component {
             });
         }
 
-        // axios.post('/game/api-send-country/', {
-        //     _csrf: window.yii.getCsrfToken(),
-        //     country: this.state.countriesInput,
-        // }, {
-        //     responseType: 'json',
-        // })
-        // .then(response => {
-        //     const responseData = response && response.data ? response.data : null;
-        // })
-        // .catch(error => {
-        //     console.log(error);
-        // });
     }
 
     render() {
@@ -215,6 +209,7 @@ const mapStateToProps = (state, ownProps) => {
         matchedCountries: state.matchedCountries,
         elapsedTime: state.runner.elapsedTime,
         runnerStatus: state.runner.status,
+        gameUid: state.runner.gameUid,
     };
 };
 

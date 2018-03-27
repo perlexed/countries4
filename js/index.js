@@ -13,6 +13,7 @@ const defaultState = {
     runner: {
         status: Runner.STATUS_IDLE,
         elapsedTime: 0,
+        gameUid: null,
     }
 };
 
@@ -26,8 +27,13 @@ store.subscribe(() => {
     storeManager.set('countriesState', JSON.stringify(store.getState()));
 });
 
-ReactDOM.render(<Provider store={store}>
-    <Game
-        store={store}
-    />
-</Provider>, document.getElementById('gameContainer'));
+ReactDOM.render(
+    <Provider store={store}>
+        <Game
+            // @todo figure out why Provider doesn't provide props.store to the Game
+            store={store}
+            userUid = {window.USER_UID}
+        />
+    </Provider>,
+    document.getElementById('gameContainer')
+);
