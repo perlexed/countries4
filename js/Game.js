@@ -1,16 +1,18 @@
 
 import React from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import Runner from './Runner';
 import CountryProvider from './CountryProvider';
 import PropTypes from 'prop-types';
+import ActionLogger from './ActionLogger';
 
 class Game extends React.Component {
 
     static propTypes = {
         runnerStatus: PropTypes.string,
         userUid: PropTypes.string,
+        runner: PropTypes.object,
+        actionLogger: PropTypes.object,
     };
 
     constructor(props) {
@@ -23,13 +25,13 @@ class Game extends React.Component {
 
         this.countryProvider = new CountryProvider();
 
-        this.runner = new Runner(this.props.store, this.props.runnerStatus, this.props.elapsedTime);
-
         this.onCountrySubmit = this.onCountrySubmit.bind(this);
     }
 
     onCountrySubmit(event) {
         event.preventDefault();
+
+        this.props.actionLogger._getGameUid();
 
         if (this.props.runnerStatus === Runner.STATUS_FINISHED) {
             return;
@@ -40,7 +42,7 @@ class Game extends React.Component {
         }
 
         if (this.props.runnerStatus === Runner.STATUS_IDLE) {
-            this.runner.start();
+            this.props.runner.start();
         }
 
         const matchedCountryCode = this.countryProvider.check(this.state.countriesInput);
@@ -52,6 +54,17 @@ class Game extends React.Component {
                 ? 'duplicate'
                 : 'success'
             );
+
+        if (checkResult !== 'duplicate') {
+            const actionType = checkResult === 'error'
+                ? ActionLogger.COUNTRY_FAIL_SUBMIT
+                : ActionLogger.COUNTRY_SUCCESS_SUBMIT;
+
+            this.props.actionLogger.logAction(
+                actionType,
+                checkResult === 'error' ? this.state.countriesInput : matchedCountryCode
+            );
+        }
 
         this.inputFieldBlink(checkResult);
 
@@ -99,14 +112,14 @@ class Game extends React.Component {
 
                     {this.props.runnerStatus === Runner.STATUS_RUNNING && (
                         <button className='btn btn-default stop-button' onClick={() => {
-                            this.runner.stop();
+                            this.props.runner.stop();
                         }}>Закончить</button>
                     )}
 
                     {this.props.runnerStatus === Runner.STATUS_FINISHED && (
                         <button className='btn btn-default reset-button' onClick={() => {
                             this.props.resetGame();
-                            this.runner.reset();
+                            this.props.runner.reset();
                         }}>Начать снова</button>
                     )}
                 </form>

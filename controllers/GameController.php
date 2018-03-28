@@ -36,19 +36,14 @@ class GameController extends Controller
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
-        $post = \Yii::$app->request->post();
-
         $action = new Action([
             'userId' => \Yii::$app->user->getIdentity()->getId(),
             'gameUid' => \Yii::$app->request->post('gameUid'),
             'actionType' => \Yii::$app->request->post('actionType'),
+            'countryName' => \Yii::$app->request->post('countryName'),
         ]);
 
-        $action->save();
-
-        return [
-            'userId' => \Yii::$app->user->getIdentity()->getId(),
-        ];
+        return $action->save();
     }
 
 }

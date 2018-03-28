@@ -1,4 +1,6 @@
 
+import ActionLogger from './ActionLogger';
+
 const STATUS_IDLE = 'idle';
 const STATUS_RUNNING = 'running';
 const STATUS_FINISHED = 'finished';
@@ -12,17 +14,19 @@ class Runner {
     static tickInterval = 1;
     static timeLimit = 120;
 
-    constructor(store, status, elapsedTime) {
+    constructor(store, actionLogger) {
+        const runnerState = store.getState().runner;
 
         this.store = store;
+        this.actionLogger = actionLogger;
         this.runnerInterval = null;
 
-        this.elapsedTime = elapsedTime;
-        this.status = status;
+        this.elapsedTime = runnerState.elapsedTime;
+        this.status = runnerState.status;
 
         this.onTick = this.onTick.bind(this);
 
-        if (status === Runner.STATUS_RUNNING) {
+        if (this.status === Runner.STATUS_RUNNING) {
             this.status = Runner.STATUS_RUNNING;
             this.runnerInterval = setInterval(this.onTick, Runner.tickInterval * 1000);
         }
@@ -45,6 +49,8 @@ class Runner {
             gameUid: Runner._getUuid(),
         });
 
+        this.actionLogger.logAction(ActionLogger.GAME_START);
+
         this._setStatus(Runner.STATUS_RUNNING);
     }
 
@@ -55,6 +61,8 @@ class Runner {
 
         clearInterval(this.runnerInterval);
         this.runnerInterval = null;
+
+        this.actionLogger.logAction(ActionLogger.GAME_STOP);
 
         this._setStatus(Runner.STATUS_FINISHED);
     }
