@@ -7,7 +7,7 @@ export default class ActionLogger {
     }
 
     logAction(actionType, countryName = null) {
-        return axios.post('/game/api-log-action/', {
+        return axios.post(window.BASEURL + '/game/api-log-action/', {
             _csrf: window.yii.getCsrfToken(),
             gameUid: this.store.getState().runner.gameUid,
             actionType: actionType,

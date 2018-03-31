@@ -34,6 +34,7 @@ class GameAsset extends AssetBundle
 
         $view->registerJs("window.COUNTRIES_LIST = {$countriesJson};", $view::POS_HEAD);
         $view->registerJs("window.USER_UID = '{$userUid}';", $view::POS_HEAD);
+        $view->registerJs('window.BASEURL = "' . \Yii::$app->request->baseUrl . '"');
     }
 
 }

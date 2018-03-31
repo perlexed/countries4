@@ -66,7 +66,7 @@ class Runner {
         // Update games history on game stop
         this.actionLogger.logAction(ActionType.GAME_STOP)
             .then(() => {
-                axios.post('/game/api-update-history/', {
+                axios.post(window.BASEURL + '/game/api-update-history/', {
                     _csrf: window.yii.getCsrfToken(),
                 }, {
                     responseType: 'json',
@@ -98,7 +98,7 @@ class Runner {
         this.elapsedTime += Runner.tickInterval;
 
         this.store.dispatch({
-            type: '`',
+            type: 'SET_ELAPSED_TIME',
             time: this.elapsedTime,
         });
 
