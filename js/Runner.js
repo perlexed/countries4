@@ -1,5 +1,6 @@
 
-import ActionLogger from './ActionLogger';
+import ActionType from '../enums/ActionType';
+import axios from "axios/index";
 
 const STATUS_IDLE = 'idle';
 const STATUS_RUNNING = 'running';
@@ -49,7 +50,7 @@ class Runner {
             gameUid: Runner._getUuid(),
         });
 
-        this.actionLogger.logAction(ActionLogger.GAME_START);
+        this.actionLogger.logAction(ActionType.GAME_START);
 
         this._setStatus(Runner.STATUS_RUNNING);
     }
@@ -62,7 +63,24 @@ class Runner {
         clearInterval(this.runnerInterval);
         this.runnerInterval = null;
 
-        this.actionLogger.logAction(ActionLogger.GAME_STOP);
+        // Update games history on game stop
+        this.actionLogger.logAction(ActionType.GAME_STOP)
+            .then(() => {
+                axios.post('/game/api-update-history/', {
+                    _csrf: window.yii.getCsrfToken(),
+                }, {
+                    responseType: 'json',
+                }).then(historyResponse => {
+                    if (!historyResponse || !("data" in historyResponse)) {
+                        return;
+                    }
+
+                    this.store.dispatch({
+                        type: 'UPDATE_HISTORY',
+                        history: historyResponse.data,
+                    });
+                });
+            });
 
         this._setStatus(Runner.STATUS_FINISHED);
     }
@@ -80,7 +98,7 @@ class Runner {
         this.elapsedTime += Runner.tickInterval;
 
         this.store.dispatch({
-            type: 'SET_ELAPSED_TIME',
+            type: '`',
             time: this.elapsedTime,
         });
 
@@ -91,14 +109,6 @@ class Runner {
 
     isRunning() {
         return this.status === Runner.STATUS_RUNNING;
-    }
-
-    isFinished() {
-        return this.status === Runner.STATUS_FINISHED;
-    }
-
-    isIdle() {
-        return this.status === Runner.STATUS_IDLE;
     }
 
     _setStatus(status) {

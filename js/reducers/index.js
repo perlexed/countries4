@@ -1,11 +1,31 @@
 import { combineReducers } from 'redux';
 
-import countries from './countries';
 import runner from './runner';
 
 const combinedReducers = combineReducers({
-    matchedCountries: countries,
+    matchedCountries: (state = {}, action) => {
+        switch (action.type) {
+            case 'ADD_COUNTRY':
+                return state.indexOf(action.countryCode) === -1
+                    ? [...state].concat(action.countryCode)
+                    : state;
+            case 'RESET_COUNTRIES':
+                return [];
+            default:
+                return state;
+        }
+    },
+
     runner: runner,
+
+    history: (state = [], action) => {
+        switch (action.type) {
+            case 'UPDATE_HISTORY':
+                return action.history;
+            default:
+                return state;
+        }
+    },
 });
 
 export default combinedReducers;

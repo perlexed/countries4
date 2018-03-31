@@ -15,12 +15,18 @@ const defaultState = {
         status: Runner.STATUS_IDLE,
         elapsedTime: 0,
         gameUid: null,
-    }
+    },
+    history: window.HISTORY || [],
 };
 
 const savedState = storeManager.get('countriesState') && storeManager.get('countriesState').length
     ? JSON.parse(storeManager.get('countriesState'))
     : null;
+
+// @todo sort out 'window.*' config constants and remove them
+if (savedState) {
+    savedState.history = window.HISTORY || [];
+}
 
 const store = createStore(combinedReducers, savedState || defaultState);
 

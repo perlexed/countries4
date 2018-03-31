@@ -1,10 +1,13 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import Runner from './Runner';
-import CountryProvider from './CountryProvider';
 import PropTypes from 'prop-types';
-import ActionLogger from './ActionLogger';
+
+import CountryProvider from './CountryProvider';
+import Runner from './Runner';
+import ActionType from '../enums/ActionType';
+import History from './History';
+import TimeHelper from './helpers/TimeHelper';
 
 class Game extends React.Component {
 
@@ -13,6 +16,7 @@ class Game extends React.Component {
         userUid: PropTypes.string,
         runner: PropTypes.object,
         actionLogger: PropTypes.object,
+        store: PropTypes.object,
     };
 
     constructor(props) {
@@ -30,8 +34,6 @@ class Game extends React.Component {
 
     onCountrySubmit(event) {
         event.preventDefault();
-
-        this.props.actionLogger._getGameUid();
 
         if (this.props.runnerStatus === Runner.STATUS_FINISHED) {
             return;
@@ -57,8 +59,8 @@ class Game extends React.Component {
 
         if (checkResult !== 'duplicate') {
             const actionType = checkResult === 'error'
-                ? ActionLogger.COUNTRY_FAIL_SUBMIT
-                : ActionLogger.COUNTRY_SUCCESS_SUBMIT;
+                ? ActionType.COUNTRY_FAIL_SUBMIT
+                : ActionType.COUNTRY_SUCCESS_SUBMIT;
 
             this.props.actionLogger.logAction(
                 actionType,
@@ -79,60 +81,75 @@ class Game extends React.Component {
     }
 
     render() {
+        const isHistoryPresent = this.props.history && Object.keys(this.props.history).length > 0;
+
+        return (
+            <div className='row'>
+                <div className={isHistoryPresent ? 'col-md-7' : 'col-md-12'}>
+                    {this.renderGameForm()}
+
+                    {this.renderTimer()}
+
+                    {this.renderMatchedCountries()}
+
+                    {this.renderRestCountries()}
+                </div>
+
+                {isHistoryPresent && (
+                    <div className='col-md-5'>
+                        <History history={this.props.history}/>
+                    </div>
+                )}
+            </div>
+        );
+    }
+
+    renderGameForm() {
         const blinkClass = this.state.inputBlink === null
             ? '' :
             'blink-' + this.state.inputBlink;
 
         return (
-            <div>
-                <form
-                    className='country-form'
-                    onSubmit={this.onCountrySubmit}
-                >
-                    <div className='form-group'>
-                        <label>Введите страну</label>
-                        <input
-                            className={'form-control' + (blinkClass ? ' ' + blinkClass : '')}
-                            type='text'
-                            value={this.state.countriesInput}
-                            disabled={this.props.runnerStatus === Runner.STATUS_FINISHED}
-                            onChange={event => {
-                                this.setState({
-                                    countriesInput: event.target.value,
-                                });
-                            }}
-                        />
-                    </div>
+            <form
+                className='country-form'
+                onSubmit={this.onCountrySubmit}
+            >
+                <div className='form-group'>
+                    <label>Введите страну</label>
+                    <input
+                        className={'form-control' + (blinkClass ? ' ' + blinkClass : '')}
+                        type='text'
+                        value={this.state.countriesInput}
+                        disabled={this.props.runnerStatus === Runner.STATUS_FINISHED}
+                        onChange={event => {
+                            this.setState({
+                                countriesInput: event.target.value,
+                            });
+                        }}
+                    />
+                </div>
 
-                    <button
-                        type='submit'
-                        className='btn btn-default'
-                    >Отправить</button>
+                <button
+                    type='submit'
+                    className='btn btn-default'
+                >Отправить</button>
 
 
-                    {this.props.runnerStatus === Runner.STATUS_RUNNING && (
-                        <button className='btn btn-default stop-button' onClick={() => {
-                            this.props.runner.stop();
-                        }}>Закончить</button>
-                    )}
+                {this.props.runnerStatus === Runner.STATUS_RUNNING && (
+                    <button className='btn btn-default stop-button' onClick={() => {
+                        this.props.runner.stop();
+                    }}>Закончить</button>
+                )}
 
-                    {this.props.runnerStatus === Runner.STATUS_FINISHED && (
-                        <button className='btn btn-default reset-button' onClick={() => {
-                            this.props.resetGame();
-                            this.props.runner.reset();
-                        }}>Начать снова</button>
-                    )}
-                </form>
-
-                {this.renderTimer()}
-                {this.renderMatchedCountries()}
-
-                {this.renderRestCountries()}
-            </div>
+                {this.props.runnerStatus === Runner.STATUS_FINISHED && (
+                    <button className='btn btn-default reset-button' onClick={() => {
+                        this.props.resetGame();
+                        this.props.runner.reset();
+                    }}>Начать снова</button>
+                )}
+            </form>
         );
     }
-
-
 
     renderTimer() {
         if (this.props.runnerStatus === Runner.STATUS_IDLE) {
@@ -157,20 +174,13 @@ class Game extends React.Component {
             return 'ы';
         };
 
-        const timeObject = Game.getFormattedTime(Runner.timeLimit - this.props.elapsedTime);
+        const timeObject = TimeHelper.getFormattedTime(Runner.timeLimit - this.props.elapsedTime);
         const minutesString = timeObject.minutes
             ? ' ' + timeObject.minutes + ' минут' + getEnumerableEnding(timeObject.minutes)
             : '';
         const secondsString = timeObject.seconds + ' секунд' + getEnumerableEnding(timeObject.seconds);
 
         return (<h4>Осталось времени:{minutesString} {secondsString}</h4>);
-    }
-
-    static getFormattedTime(seconds) {
-        return {
-            minutes: Math.floor(seconds / 60),
-            seconds: seconds % 60,
-        };
     }
 
     renderRestCountries() {
@@ -217,16 +227,17 @@ class Game extends React.Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = state => {
     return {
         matchedCountries: state.matchedCountries,
         elapsedTime: state.runner.elapsedTime,
         runnerStatus: state.runner.status,
         gameUid: state.runner.gameUid,
+        history: state.history,
     };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = dispatch => {
     return {
         onCountryMatch: countryCode => {
             dispatch({
