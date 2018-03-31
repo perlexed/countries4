@@ -13,13 +13,11 @@ export default class History extends React.Component {
     render() {
         const historyData = Object.keys(this.props.history).map(gameUid => {
             const gameData = this.props.history[gameUid];
-            const timeElapsedObject = TimeHelper.getFormattedTime(gameData.gameLength);
 
             return {
                 date: gameData.startDate,
                 countriesMatched: gameData.countriesMatched,
-                timeElapsed: (timeElapsedObject.minutes < 10 ? '0' + timeElapsedObject.minutes : timeElapsedObject.minutes) + ':'
-                    + (timeElapsedObject.seconds < 10 ? '0' + timeElapsedObject.seconds : timeElapsedObject.seconds),
+                timeElapsed: TimeHelper.getHHMMTime(TimeHelper.getFormattedTime(gameData.gameLength)),
             };
         });
 

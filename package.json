@@ -23,7 +23,8 @@
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
     "redux-devtools": "^3.4.1",
-    "webpack": "^3.8.1"
+    "webpack": "^4.4.1",
+    "webpack-cli": "^2.0.13"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

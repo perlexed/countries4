@@ -1,24 +1,26 @@
 const path = require('path');
 
 module.exports = {
-    entry: './js/index.js',
+    entry: [
+        './js/index.js'
+    ],
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'web/js')
     },
     module: {
-        loaders: [
+        rules: [
             {
-                test: /.js/,
-                loader: 'babel-loader',
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                options: {
-                    plugins: [
-                        'transform-class-properties',
-                    ],
-                    presets: ['env', 'react'],
-                },
-            },
+                use: ['babel-loader']
+            }
         ]
+    },
+    resolve: {
+        extensions: ['*', '.js', '.jsx']
+    },
+    devServer: {
+        contentBase: './web/js',
     },
 };
