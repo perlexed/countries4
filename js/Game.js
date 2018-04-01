@@ -7,16 +7,18 @@ import Runner from './components/Runner';
 import ActionType from '../enums/ActionType';
 import History from './History';
 import TimeHelper from './helpers/TimeHelper';
+import ActionLogger from './components/ActionLogger';
+import CountryProvider from './components/CountryProvider';
 
 class Game extends React.Component {
 
     static propTypes = {
         runnerStatus: PropTypes.string,
         userUid: PropTypes.string,
-        runner: PropTypes.object,
-        actionLogger: PropTypes.object,
+        runner: PropTypes.instanceOf(Runner),
         store: PropTypes.object,
-        countryProvider: PropTypes.object,
+        actionLogger: PropTypes.instanceOf(ActionLogger),
+        countryProvider: PropTypes.instanceOf(CountryProvider),
     };
 
     constructor(props) {

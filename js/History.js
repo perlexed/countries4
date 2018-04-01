@@ -7,7 +7,11 @@ import TimeHelper from './helpers/TimeHelper';
 export default class History extends React.Component {
 
     static propTypes = {
-        history: PropTypes.object,
+        history: PropTypes.objectOf(PropTypes.shape({
+            startDate: PropTypes.string,
+            countriesMatched: PropTypes.number,
+            gameLength: PropTypes.number,
+        })),
     };
 
     render() {
