@@ -1,13 +1,16 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Game from './Game';
 import { Provider } from 'react-redux';
 import { createStore} from 'redux';
-import combinedReducers from './reducers/index';
 import storeManager from 'store';
-import Runner from './Runner';
-import ActionLogger from './ActionLogger';
+
+import combinedReducers from './reducers/index';
+import Game from './Game';
+import Runner from './components/Runner';
+import ActionLogger from './components/ActionLogger';
+import CountryProvider from "./components/CountryProvider";
+import NetworkHelper from "./components/NetworkHelper";
 
 const defaultState = {
     matchedCountries: [],
@@ -34,18 +37,18 @@ store.subscribe(() => {
     storeManager.set('countriesState', JSON.stringify(store.getState()));
 });
 
-
-const actionLogger = new ActionLogger(store);
-const runner = new Runner(store, actionLogger);
+const networkHelper = new NetworkHelper(window.BASEURL);
+const actionLogger = new ActionLogger(store, networkHelper);
+const runner = new Runner(store, actionLogger, networkHelper);
+const countryProvider = new CountryProvider(window.COUNTRIES_LIST);
 
 ReactDOM.render(
     <Provider store={store}>
         <Game
-            // @todo figure out why Provider doesn't provide props.store to the Game
-            store={store}
-            userUid = {window.USER_UID}
+            userUid={window.USER_UID}
             runner={runner}
             actionLogger={actionLogger}
+            countryProvider={countryProvider}
         />
     </Provider>,
     document.getElementById('gameContainer')

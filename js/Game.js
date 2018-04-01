@@ -3,8 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import CountryProvider from './CountryProvider';
-import Runner from './Runner';
+import Runner from './components/Runner';
 import ActionType from '../enums/ActionType';
 import History from './History';
 import TimeHelper from './helpers/TimeHelper';
@@ -17,6 +16,7 @@ class Game extends React.Component {
         runner: PropTypes.object,
         actionLogger: PropTypes.object,
         store: PropTypes.object,
+        countryProvider: PropTypes.object,
     };
 
     constructor(props) {
@@ -26,8 +26,6 @@ class Game extends React.Component {
             countriesInput: '',
             inputBlink: null,
         };
-
-        this.countryProvider = new CountryProvider();
 
         this.onCountrySubmit = this.onCountrySubmit.bind(this);
     }
@@ -47,7 +45,7 @@ class Game extends React.Component {
             this.props.runner.start();
         }
 
-        const matchedCountryCode = this.countryProvider.check(this.state.countriesInput);
+        const matchedCountryCode = this.props.countryProvider.check(this.state.countriesInput);
         const isDuplicate = matchedCountryCode && this.props.matchedCountries.indexOf(matchedCountryCode) !== -1;
 
         const checkResult = !matchedCountryCode
@@ -188,7 +186,7 @@ class Game extends React.Component {
             return null;
         }
 
-        const restCountries = this.countryProvider.getRestCountries(this.props.matchedCountries);
+        const restCountries = this.props.countryProvider.getRestCountries(this.props.matchedCountries);
 
         return (
             <div className={'rest-countries'}>
@@ -208,7 +206,7 @@ class Game extends React.Component {
         return (
             <div className='matched-countries-list'>
                 {this.props.matchedCountries.map((countryCode, index) => (
-                    <div key={index}>{this.countryProvider.getByCode(countryCode).name}</div>
+                    <div key={index}>{this.props.countryProvider.getByCode(countryCode).name}</div>
                 ))}
             </div>
         );

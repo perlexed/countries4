@@ -1,6 +1,7 @@
 
-import ActionType from '../enums/ActionType';
-import axios from "axios/index";
+import ActionType from '../../enums/ActionType';
+import ActionLogger from './ActionLogger';
+import NetworkHelper from './NetworkHelper';
 
 const STATUS_IDLE = 'idle';
 const STATUS_RUNNING = 'running';
@@ -15,12 +16,18 @@ class Runner {
     static tickInterval = 1;
     static timeLimit = 120;
 
-    constructor(store, actionLogger) {
+    /**
+     * @param store
+     * @param {ActionLogger} actionLogger
+     * @param {NetworkHelper} networkHelper
+     */
+    constructor(store, actionLogger, networkHelper) {
         const runnerState = store.getState().runner;
 
         this.store = store;
         this.actionLogger = actionLogger;
         this.runnerInterval = null;
+        this.networkHelper = networkHelper;
 
         this.elapsedTime = runnerState.elapsedTime;
         this.status = runnerState.status;
@@ -66,20 +73,17 @@ class Runner {
         // Update games history on game stop
         this.actionLogger.logAction(ActionType.GAME_STOP)
             .then(() => {
-                axios.post(window.BASEURL + '/game/api-update-history/', {
-                    _csrf: window.yii.getCsrfToken(),
-                }, {
-                    responseType: 'json',
-                }).then(historyResponse => {
-                    if (!historyResponse || !("data" in historyResponse)) {
-                        return;
-                    }
+                this.networkHelper.send('/game/api-update-history/')
+                    .then(historyResponse => {
+                        if (!historyResponse || !("data" in historyResponse)) {
+                            return;
+                        }
 
-                    this.store.dispatch({
-                        type: 'UPDATE_HISTORY',
-                        history: historyResponse.data,
+                        this.store.dispatch({
+                            type: 'UPDATE_HISTORY',
+                            history: historyResponse.data,
+                        });
                     });
-                });
             });
 
         this._setStatus(Runner.STATUS_FINISHED);

@@ -23,14 +23,14 @@ export default class History extends React.Component {
 
         return (
             <div>
-                <h4>My games history</h4>
+                <h4>История игр</h4>
 
                 <table className='table'>
                     <thead>
                         <tr>
-                            <th>Date</th>
-                            <th>Countries matched</th>
-                            <th>Time elapsed</th>
+                            <th>Дата</th>
+                            <th>Угаданные страны</th>
+                            <th>Затраченное время</th>
                         </tr>
                     </thead>
 
