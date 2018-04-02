@@ -1,6 +1,8 @@
 
 import _isArray from 'lodash/isArray';
 
+import countiesList from '../../countriesList/countries.json';
+
 export default class CountryProvider {
 
     static countryAliases = {
@@ -177,8 +179,8 @@ export default class CountryProvider {
     //     },
     // ];
 
-    constructor(sourceList) {
-        this._sourceList = sourceList;
+    constructor() {
+        this._sourceList = countiesList;
         this._preparedList = this.prepareList(this._sourceList);
     }
 

@@ -28,6 +28,20 @@ AppAsset::register($this);
     </div>
 </div>
 
+<footer class="footer">
+    <div class="container">
+        <p class="pull-left">&copy; Countries <?= date('Y') ?></p>
+
+        <p class="pull-left" style="margin-left: 40px">
+            Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from
+            <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a
+                    href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+        </p>
+
+        <p class="pull-right"><?= Yii::powered() ?></p>
+    </div>
+</footer>
+
 <?php $this->endBody() ?>
 </body>
 </html>

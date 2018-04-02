@@ -12,6 +12,9 @@ import ActionLogger from './components/ActionLogger';
 import CountryProvider from "./components/CountryProvider";
 import NetworkHelper from "./components/NetworkHelper";
 
+const applicationConfig = JSON.parse(window.APPLICATION_CONFIG);
+delete window.APPLICATION_CONFIG;
+
 const defaultState = {
     matchedCountries: [],
     runner: {
@@ -19,16 +22,15 @@ const defaultState = {
         elapsedTime: 0,
         gameUid: null,
     },
-    history: window.HISTORY || [],
+    history: applicationConfig.history,
 };
 
 const savedState = storeManager.get('countriesState') && storeManager.get('countriesState').length
     ? JSON.parse(storeManager.get('countriesState'))
     : null;
 
-// @todo sort out 'window.*' config constants and remove them
 if (savedState) {
-    savedState.history = window.HISTORY || [];
+    savedState.history = applicationConfig.history;
 }
 
 const store = createStore(combinedReducers, savedState || defaultState);
@@ -37,15 +39,15 @@ store.subscribe(() => {
     storeManager.set('countriesState', JSON.stringify(store.getState()));
 });
 
-const networkHelper = new NetworkHelper(window.BASEURL);
+const networkHelper = new NetworkHelper(applicationConfig.baseUrl);
 const actionLogger = new ActionLogger(store, networkHelper);
 const runner = new Runner(store, actionLogger, networkHelper);
-const countryProvider = new CountryProvider(window.COUNTRIES_LIST);
+const countryProvider = new CountryProvider();
 
 ReactDOM.render(
     <Provider store={store}>
         <Game
-            userUid={window.USER_UID}
+            userUid={applicationConfig.userUid}
             runner={runner}
             actionLogger={actionLogger}
             countryProvider={countryProvider}

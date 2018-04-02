@@ -3,7 +3,10 @@
 namespace app\assets;
 
 
+use app\models\Action;
+use yii\helpers\Url;
 use yii\web\AssetBundle;
+use Yii;
 
 class GameAsset extends AssetBundle
 {
@@ -21,7 +24,7 @@ class GameAsset extends AssetBundle
         parent::init();
 
         $this->jsOptions = [
-            'csrfToken' => \Yii::$app->request->getCsrfToken(),
+            'csrfToken' => Yii::$app->request->getCsrfToken(),
         ];
     }
 
@@ -29,12 +32,25 @@ class GameAsset extends AssetBundle
     {
         parent::registerAssetFiles($view);
 
-        $countriesJson = file_get_contents(__DIR__ . '/../countriesList/countries.json');
-        $userUid = \Yii::$app->user->getIdentity()->getAuthKey();
+        $contextUser = Yii::$app->user->getIdentity();
 
-        $view->registerJs("window.COUNTRIES_LIST = {$countriesJson};", $view::POS_HEAD);
-        $view->registerJs("window.USER_UID = '{$userUid}';", $view::POS_HEAD);
-        $view->registerJs('window.BASEURL = "' . \Yii::$app->request->baseUrl . '"');
+        $config = json_encode([
+            'userUid' => $contextUser->getAuthKey(),
+            'baseUrl' => Yii::$app->request->baseUrl,
+            'history' => Action::getHistoryForUser($contextUser->getId()),
+        ]);
+
+        $view->registerJs("window.APPLICATION_CONFIG = '{$config}';", $view::POS_HEAD);
+
+        $urlPath = Url::base() . '/images/favicon';
+
+        $view->registerLinkTag(['rel' => 'apple-touch-icon', 'sizes' => '180x180', 'href' => $urlPath . '/apple-touch-icon.png']);
+        $view->registerLinkTag(['rel' => 'icon', 'type' => 'image/png', 'sizes' => '32x32', 'href' => $urlPath . '/favicon-32x32.png']);
+        $view->registerLinkTag(['rel' => 'icon', 'type' => 'image/png', 'sizes' => '16x16', 'href' => $urlPath . '/favicon-16x16.png']);
+        $view->registerLinkTag(['rel' => 'manifest', 'href' => Url::base() . '/site.webmanifest']);
+        $view->registerLinkTag(['rel' => 'mask-icon', 'color' => '5bbad5', 'href' => $urlPath . '/safari-pinned-tab.svg']);
+        $view->registerMetaTag(['name' => 'msapplication-TileColor', 'content' => '#da532c']);
+        $view->registerMetaTag(['name' => 'theme-color', 'content' => '#ffffff']);
     }
 
 }
