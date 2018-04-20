@@ -2,6 +2,7 @@
 import ActionType from '../../enums/ActionType';
 import ActionLogger from './ActionLogger';
 import NetworkHelper from './NetworkHelper';
+import GameMode from '../../enums/GameMode';
 
 const STATUS_IDLE = 'idle';
 const STATUS_RUNNING = 'running';
@@ -14,7 +15,11 @@ class Runner {
     static STATUS_FINISHED = STATUS_FINISHED;
 
     static tickInterval = 1;
-    static timeLimit = 120;
+
+    static gameModesTimeLimit = {
+        [GameMode.MIN2]: 120,
+        [GameMode.MIN10]: 600,
+    };
 
     /**
      * @param store
@@ -106,13 +111,17 @@ class Runner {
             time: this.elapsedTime,
         });
 
-        if (this.elapsedTime === Runner.timeLimit) {
+        if (this.elapsedTime === this.getTimeLimit()) {
             this.stop();
         }
     }
 
     isRunning() {
         return this.status === Runner.STATUS_RUNNING;
+    }
+
+    getTimeLimit() {
+        return Runner.gameModesTimeLimit[this.store.getState().gameMode];
     }
 
     _setStatus(status) {

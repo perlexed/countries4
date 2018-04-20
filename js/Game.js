@@ -2,6 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 
 import Runner from './components/Runner';
 import ActionType from '../enums/ActionType';
@@ -9,6 +10,7 @@ import History from './History';
 import TimeHelper from './helpers/TimeHelper';
 import ActionLogger from './components/ActionLogger';
 import CountryProvider from './components/CountryProvider';
+import GameMode from "../enums/GameMode";
 
 class Game extends React.Component {
 
@@ -19,6 +21,7 @@ class Game extends React.Component {
         store: PropTypes.object,
         actionLogger: PropTypes.instanceOf(ActionLogger),
         countryProvider: PropTypes.instanceOf(CountryProvider),
+        gameMode: PropTypes.oneOf([GameMode.MIN2, GameMode.MIN10]),
     };
 
     constructor(props) {
@@ -105,10 +108,6 @@ class Game extends React.Component {
     }
 
     renderGameForm() {
-        const blinkClass = this.state.inputBlink === null
-            ? '' :
-            'blink-' + this.state.inputBlink;
-
         return (
             <form
                 className='country-form'
@@ -117,7 +116,7 @@ class Game extends React.Component {
                 <div className='form-group'>
                     <label>Введите страну</label>
                     <input
-                        className={'form-control' + (blinkClass ? ' ' + blinkClass : '')}
+                        className={cn(['form-control', this.state.inputBlink !== null && 'blink-' + this.state.inputBlink])}
                         type='text'
                         value={this.state.countriesInput}
                         disabled={this.props.runnerStatus === Runner.STATUS_FINISHED}
@@ -129,11 +128,7 @@ class Game extends React.Component {
                     />
                 </div>
 
-                <button
-                    type='submit'
-                    className='btn btn-default'
-                >Отправить</button>
-
+                <button type='submit' className='btn btn-default'>Отправить</button>
 
                 {this.props.runnerStatus === Runner.STATUS_RUNNING && (
                     <button className='btn btn-default stop-button' onClick={() => {
@@ -147,6 +142,8 @@ class Game extends React.Component {
                         this.props.runner.reset();
                     }}>Начать снова</button>
                 )}
+
+                {this.renderGameModeSwitcher()}
             </form>
         );
     }
@@ -174,13 +171,55 @@ class Game extends React.Component {
             return 'ы';
         };
 
-        const timeObject = TimeHelper.getFormattedTime(Runner.timeLimit - this.props.elapsedTime);
+        const timeObject = TimeHelper.getFormattedTime(this.props.runner.getTimeLimit() - this.props.elapsedTime);
         const minutesString = timeObject.minutes
             ? ' ' + timeObject.minutes + ' минут' + getEnumerableEnding(timeObject.minutes)
             : '';
         const secondsString = timeObject.seconds + ' секунд' + getEnumerableEnding(timeObject.seconds);
 
         return (<h4>Осталось времени:{minutesString} {secondsString}</h4>);
+    }
+
+    renderGameModeSwitcher() {
+        const onGameModeChange = gameMode => {
+            this.props.setGameMode(gameMode);
+        };
+
+        const isDisabled = this.props.runnerStatus !== Runner.STATUS_IDLE;
+        const inputGroupClass = cn(['radio', isDisabled ? 'disabled' : false]);
+
+        return (
+            <div className='pull-right' style={{
+                display: 'inline-block',
+            }}>
+                <div className={inputGroupClass}>
+                    <label>
+                        <input
+                            type="radio"
+                            disabled={isDisabled}
+                            checked={this.props.gameMode === GameMode.MIN2}
+                            onChange={() => {
+                                onGameModeChange(GameMode.MIN2);
+                            }}
+                        />
+                        2 минуты
+                    </label>
+                </div>
+                <div className={inputGroupClass}>
+                    <label>
+                        <input
+                            type="radio"
+                            disabled={isDisabled}
+                            checked={this.props.gameMode === GameMode.MIN10}
+                            onChange={() => {
+                                onGameModeChange(GameMode.MIN10);
+                            }}
+                        />
+                        10 минут
+                    </label>
+                </div>
+            </div>
+        );
     }
 
     renderRestCountries() {
@@ -191,9 +230,9 @@ class Game extends React.Component {
         const restCountries = this.props.countryProvider.getRestCountries(this.props.matchedCountries);
 
         return (
-            <div className={'rest-countries'}>
+            <div className='rest-countries'>
                 <h4>Оставшиеся страны:</h4>
-                <div className={'rest-countries__container'} style={{
+                <div className='rest-countries__container' style={{
                     columnCount: 3,
                 }}>
                     {restCountries.map((countryName, id) => (
@@ -234,6 +273,7 @@ const mapStateToProps = state => {
         runnerStatus: state.runner.status,
         gameUid: state.runner.gameUid,
         history: state.history,
+        gameMode: state.gameMode,
     };
 };
 
@@ -249,6 +289,12 @@ const mapDispatchToProps = dispatch => {
             dispatch({
                 type: 'RESET_COUNTRIES',
             })
+        },
+        setGameMode: gameMode => {
+            dispatch({
+                type: 'SET_GAME_MODE',
+                gameMode: gameMode,
+            });
         }
     }
 };

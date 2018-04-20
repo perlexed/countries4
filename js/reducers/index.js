@@ -26,6 +26,15 @@ const combinedReducers = combineReducers({
                 return state;
         }
     },
+
+    gameMode: (state = null, action) => {
+        switch (action.type) {
+            case 'SET_GAME_MODE':
+                return action.gameMode;
+            default:
+                return state;
+        }
+    }
 });
 
 export default combinedReducers;

@@ -11,6 +11,7 @@ import Runner from './components/Runner';
 import ActionLogger from './components/ActionLogger';
 import CountryProvider from "./components/CountryProvider";
 import NetworkHelper from "./components/NetworkHelper";
+import GameMode from '../enums/GameMode';
 
 const applicationConfig = JSON.parse(window.APPLICATION_CONFIG);
 delete window.APPLICATION_CONFIG;
@@ -23,6 +24,7 @@ const defaultState = {
         gameUid: null,
     },
     history: applicationConfig.history,
+    gameMode: GameMode.MIN2,
 };
 
 const savedState = storeManager.get('countriesState') && storeManager.get('countriesState').length
