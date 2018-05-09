@@ -2,8 +2,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore} from 'redux';
-import storeManager from 'store';
+import { createStore } from 'redux';
+import browserStorage from 'store';
+import compareVersions from 'compare-versions';
 
 import combinedReducers from './reducers/index';
 import Game from './Game';
@@ -25,20 +26,29 @@ const defaultState = {
     },
     history: applicationConfig.history,
     gameMode: GameMode.MIN2,
+    version: applicationConfig.version,
 };
 
-const savedState = storeManager.get('countriesState') && storeManager.get('countriesState').length
-    ? JSON.parse(storeManager.get('countriesState'))
+let savedState = browserStorage.get('countriesState') && browserStorage.get('countriesState').length
+    ? JSON.parse(browserStorage.get('countriesState'))
     : null;
 
 if (savedState) {
     savedState.history = applicationConfig.history;
 }
 
+// Reset state if there is a new version of the application
+if (savedState && (
+    !savedState.version
+    || compareVersions(applicationConfig.version, savedState.version) === 1
+)) {
+    savedState = null;
+}
+
 const store = createStore(combinedReducers, savedState || defaultState);
 
 store.subscribe(() => {
-    storeManager.set('countriesState', JSON.stringify(store.getState()));
+    browserStorage.set('countriesState', JSON.stringify(store.getState()));
 });
 
 const networkHelper = new NetworkHelper(applicationConfig.baseUrl);

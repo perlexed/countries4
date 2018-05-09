@@ -34,6 +34,10 @@ const combinedReducers = combineReducers({
             default:
                 return state;
         }
+    },
+
+    version: (state = '') => {
+        return state;
     }
 });
 

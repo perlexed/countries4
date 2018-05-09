@@ -51,6 +51,9 @@ $config = [
                 'POST '
             ],
         ],
+        'assetManager' => [
+            'appendTimestamp' => true,
+        ],
     ],
 ];
 
