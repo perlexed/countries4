@@ -3,8 +3,10 @@
 namespace app\models;
 
 use app\enums\ActionType;
+use app\enums\GameMode;
 use yii\behaviors\TimestampBehavior;
 use yii\helpers\ArrayHelper;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "actions".
@@ -15,8 +17,9 @@ use yii\helpers\ArrayHelper;
  * @property string $gameUid
  * @property string $actionType
  * @property string $countryName
+ * @property string $gameMode
  */
-class Action extends \yii\db\ActiveRecord
+class Action extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -44,7 +47,8 @@ class Action extends \yii\db\ActiveRecord
     {
         return [
             [['createdAt', 'userId'], 'integer'],
-            [['gameUid', 'actionType', 'countryName'], 'string', 'max' => 255],
+            [['gameUid', 'actionType', 'countryName', 'gameMode'], 'string', 'max' => 255],
+            ['gameMode', 'in', 'range' => GameMode::getKeys()],
         ];
     }
 
@@ -60,6 +64,7 @@ class Action extends \yii\db\ActiveRecord
             'gameUid' => 'Game Uid',
             'actionType' => 'Action Type',
             'countryName' => 'Country Name',
+            'gameMode' => 'Game Mode',
         ];
     }
 
@@ -77,11 +82,8 @@ class Action extends \yii\db\ActiveRecord
             return [];
         }
 
+        // Group action by gameUid
         $actionsByGame = ArrayHelper::index($userActions, null, 'gameUid');
-
-        $actionsByGame = array_filter($actionsByGame, function($key) {
-            return !!$key;
-        }, ARRAY_FILTER_USE_KEY);
 
         if (!count($actionsByGame)) {
             return [];
@@ -90,6 +92,7 @@ class Action extends \yii\db\ActiveRecord
         $gamesData = array_reduce($actionsByGame, function($correctGames, $gameActions) {
             $actionTypes = ArrayHelper::getColumn($gameActions, 'actionType');
 
+            // Consider a game correct if it has beginning and end
             if (!ArrayHelper::isSubset([ActionType::GAME_START, ActionType::GAME_STOP], $actionTypes)) {
                 return $correctGames;
             }
@@ -97,10 +100,29 @@ class Action extends \yii\db\ActiveRecord
             $indexedActions = ArrayHelper::index($gameActions, null, 'actionType');
             $startAction = $indexedActions[ActionType::GAME_START][0];
 
+            $gameMode = $startAction['gameMode'];
+
+            // Skip game if game mode is wrong
+            if (!in_array($gameMode, GameMode::getKeys())) {
+                return $correctGames;
+            }
+
+            // Skip game if no actions with the correct country submit
+            if (empty($indexedActions[ActionType::COUNTRY_SUCCESS_SUBMIT])) {
+                return $correctGames;
+            }
+
+            $gameLength = $indexedActions[ActionType::GAME_STOP][0]['createdAt'] - $startAction['createdAt'];
+
+
+            if ($gameLength > GameMode::getGameModeLength($gameMode)) {
+                $gameLength = GameMode::getGameModeLength($gameMode);
+            }
+
             $correctGames[$startAction['gameUid']] = [
                 'startTimestamp' => (int) $startAction['createdAt'],
                 'startDate' => date('Y-m-d H:i', (int) $startAction['createdAt']),
-                'gameLength' => $indexedActions[ActionType::GAME_STOP][0]['createdAt'] - $startAction['createdAt'],
+                'gameLength' => $gameLength,
                 'countriesMatched' => count($indexedActions[ActionType::COUNTRY_SUCCESS_SUBMIT]),
             ];
 

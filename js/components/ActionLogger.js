@@ -12,11 +12,12 @@ export default class ActionLogger {
         this.networkHelper = networkHelper;
     }
 
-    logAction(actionType, countryName = null) {
+    logAction(actionType, gameMode, countryName = null) {
         return this.networkHelper.send('/game/api-log-action/', {
             gameUid: this.store.getState().runner.gameUid,
-            actionType: actionType,
-            countryName: countryName,
+            actionType,
+            countryName,
+            gameMode,
         });
     }
 }

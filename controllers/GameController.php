@@ -43,6 +43,7 @@ class GameController extends Controller
             'gameUid' => Yii::$app->request->post('gameUid'),
             'actionType' => Yii::$app->request->post('actionType'),
             'countryName' => Yii::$app->request->post('countryName'),
+            'gameMode' => Yii::$app->request->post('gameMode'),
         ]);
 
         return $action->save();

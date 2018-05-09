@@ -67,6 +67,7 @@ class Game extends React.Component {
 
             this.props.actionLogger.logAction(
                 actionType,
+                this.props.gameMode,
                 checkResult === 'error' ? this.state.countriesInput : matchedCountryCode
             );
         }

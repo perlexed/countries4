@@ -16,11 +16,6 @@ class Runner {
 
     static tickInterval = 1;
 
-    static gameModesTimeLimit = {
-        [GameMode.MIN2]: 120,
-        [GameMode.MIN10]: 600,
-    };
-
     /**
      * @param store
      * @param {ActionLogger} actionLogger
@@ -62,7 +57,7 @@ class Runner {
             gameUid: Runner._getUuid(),
         });
 
-        this.actionLogger.logAction(ActionType.GAME_START);
+        this.actionLogger.logAction(ActionType.GAME_START, this.store.getState().gameMode);
 
         this._setStatus(Runner.STATUS_RUNNING);
     }
@@ -76,7 +71,7 @@ class Runner {
         this.runnerInterval = null;
 
         // Update games history on game stop
-        this.actionLogger.logAction(ActionType.GAME_STOP)
+        this.actionLogger.logAction(ActionType.GAME_STOP, this.store.getState().gameMode)
             .then(() => {
                 this.networkHelper.send('/game/api-update-history/')
                     .then(historyResponse => {
@@ -121,7 +116,7 @@ class Runner {
     }
 
     getTimeLimit() {
-        return Runner.gameModesTimeLimit[this.store.getState().gameMode];
+        return GameMode.getGameModeLength(this.store.getState().gameMode);
     }
 
     _setStatus(status) {
