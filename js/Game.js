@@ -89,6 +89,14 @@ class Game extends React.Component {
 
         return (
             <div className='row'>
+                <h1 className='text-center main-header'>Страноведение</h1>
+
+                <section className='text-center description-text'>
+                    <p>Цель игры - за ограниченное време указать как можно больше названий стран</p>
+                    <p>Указывать следует полное название страны, но для многих стран поддерживается сокращенный вариант написания</p>
+                    <p>Отсчет времени начнется сразу после того, как будет введено и отправлено название любой страны</p>
+                </section>
+
                 <div className={isHistoryPresent ? 'col-md-7' : 'col-md-12'}>
                     {this.renderGameForm()}
 

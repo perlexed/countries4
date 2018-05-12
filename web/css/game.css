@@ -1,4 +1,14 @@
 
+#gameContainer {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.main-header {
+    font-family: 'Noto Serif', serif;
+    padding-bottom: 9px;
+    margin: 40px 0 20px;
+}
+
 .country-form input.blink-error {
     background-color: #FFAAAF;
 }

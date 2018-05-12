@@ -45,6 +45,8 @@ class GameAsset extends AssetBundle
 
         $urlPath = Url::base() . '/images/favicon';
 
+        $view->registerLinkTag(['rel' => 'stylesheet', 'href' => 'https://fonts.googleapis.com/css?family=Noto+Serif|Noto+Sans:400,700&amp;subset=cyrillic']);
+
         $view->registerLinkTag(['rel' => 'apple-touch-icon', 'sizes' => '180x180', 'href' => $urlPath . '/apple-touch-icon.png']);
         $view->registerLinkTag(['rel' => 'icon', 'type' => 'image/png', 'sizes' => '32x32', 'href' => $urlPath . '/favicon-32x32.png']);
         $view->registerLinkTag(['rel' => 'icon', 'type' => 'image/png', 'sizes' => '16x16', 'href' => $urlPath . '/favicon-16x16.png']);
