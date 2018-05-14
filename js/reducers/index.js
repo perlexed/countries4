@@ -7,7 +7,7 @@ const combinedReducers = combineReducers({
         switch (action.type) {
             case 'ADD_COUNTRY':
                 return state.indexOf(action.countryCode) === -1
-                    ? [...state].concat(action.countryCode)
+                    ? [action.countryCode].concat(...state)
                     : state;
             case 'RESET_COUNTRIES':
                 return [];

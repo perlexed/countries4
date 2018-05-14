@@ -95,6 +95,11 @@ class Runner {
         clearInterval(this.runnerInterval);
         this.runnerInterval = null;
 
+        this.store.dispatch({
+            type: 'SET_ELAPSED_TIME',
+            time: this.elapsedTime,
+        });
+
         this._setStatus(Runner.STATUS_IDLE);
     }
 

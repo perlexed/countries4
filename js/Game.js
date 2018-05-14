@@ -137,7 +137,9 @@ class Game extends React.Component {
                     />
                 </div>
 
-                <button type='submit' className='btn btn-default'>Отправить</button>
+                {this.props.runnerStatus !== Runner.STATUS_FINISHED && (
+                    <button type='submit' className='btn btn-default send-button'>Отправить</button>
+                )}
 
                 {this.props.runnerStatus === Runner.STATUS_RUNNING && (
                     <button className='btn btn-default stop-button' onClick={() => {

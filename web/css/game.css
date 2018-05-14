@@ -29,6 +29,6 @@
     padding: 3px 0;
 }
 
-.stop-button, .reset-button {
-    margin-left: 10px;
+.send-button, .stop-button {
+    margin-right: 10px;
 }
