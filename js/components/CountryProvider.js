@@ -244,6 +244,10 @@ export default class CountryProvider {
         return this._sourceList.find(countryData => countryData.code === countryCode);
     }
 
+    getPreparedByCode(countryCode) {
+        return this._preparedList[countryCode];
+    }
+
     getRestCountries(matchedCountriesCodes) {
         return Object.keys(this._preparedList)
             .filter(countryCode => matchedCountriesCodes.indexOf(countryCode) === -1)

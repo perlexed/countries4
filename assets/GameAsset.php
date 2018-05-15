@@ -3,6 +3,7 @@
 namespace app\assets;
 
 
+use app\helpers\StatisticsHelper;
 use app\models\Action;
 use yii\helpers\Url;
 use yii\web\AssetBundle;
@@ -39,6 +40,7 @@ class GameAsset extends AssetBundle
             'baseUrl' => Yii::$app->request->baseUrl,
             'history' => Action::getHistoryForUser($contextUser->getId()),
             'version' => Yii::$app->getVersion(),
+            'statistics' => StatisticsHelper::getStatistics(),
         ]);
 
         $view->registerJs("window.APPLICATION_CONFIG = '{$config}';", $view::POS_HEAD);

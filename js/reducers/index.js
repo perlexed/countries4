@@ -36,9 +36,24 @@ const combinedReducers = combineReducers({
         }
     },
 
+    // @todo refactor this
     version: (state = '') => {
         return state;
-    }
+    },
+
+    // @todo refactor this
+    statistics: (state = {}) => {
+        return state;
+    },
+
+    infoPanelSwitch: (state = 'stats', action) => {
+        switch (action.type) {
+            case 'TOGGLE_INFO_PANEL':
+                return action.infoPanelName;
+            default:
+                return state;
+        }
+    },
 });
 
 export default combinedReducers;

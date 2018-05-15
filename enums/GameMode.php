@@ -5,8 +5,8 @@ namespace app\enums;
 
 class GameMode
 {
-    const MIN2 = '2min';
-    const MIN10 = '10min';
+    const MIN2 = 'min2';
+    const MIN10 = 'min10';
 
     public static function getKeys()
     {

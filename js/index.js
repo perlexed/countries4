@@ -24,9 +24,11 @@ const defaultState = {
         elapsedTime: 0,
         gameUid: null,
     },
-    history: applicationConfig.history,
+    history: [],
     gameMode: GameMode.MIN2,
-    version: applicationConfig.version,
+    version: [],
+    statistics: [],
+    infoPanelSwitch: 'stats',
 };
 
 let savedState = browserStorage.get('countriesState') && browserStorage.get('countriesState').length
@@ -45,7 +47,13 @@ if (savedState && (
     savedState = null;
 }
 
-const store = createStore(combinedReducers, savedState || defaultState);
+const sourceStore = Object.assign(savedState || defaultState, {
+    history: applicationConfig.history,
+    version: applicationConfig.version,
+    statistics: applicationConfig.statistics,
+});
+
+const store = createStore(combinedReducers, sourceStore);
 
 store.subscribe(() => {
     browserStorage.set('countriesState', JSON.stringify(store.getState()));

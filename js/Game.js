@@ -7,6 +7,7 @@ import cn from 'classnames';
 import Runner from './components/Runner';
 import ActionType from '../enums/ActionType';
 import History from './History';
+import Statistics from './Statistics';
 import TimeHelper from './helpers/TimeHelper';
 import ActionLogger from './components/ActionLogger';
 import CountryProvider from './components/CountryProvider';
@@ -22,6 +23,8 @@ class Game extends React.Component {
         actionLogger: PropTypes.instanceOf(ActionLogger),
         countryProvider: PropTypes.instanceOf(CountryProvider),
         gameMode: PropTypes.oneOf([GameMode.MIN2, GameMode.MIN10]),
+        statistics: PropTypes.object,
+        infoPanelSwitch: PropTypes.oneOf(['stats', 'history']),
     };
 
     constructor(props) {
@@ -86,6 +89,7 @@ class Game extends React.Component {
 
     render() {
         const isHistoryPresent = this.props.history && Object.keys(this.props.history).length > 0;
+        const showStatistics = this.props.infoPanelSwitch === 'stats';
 
         return (
             <div className='row'>
@@ -97,7 +101,7 @@ class Game extends React.Component {
                     <p>Отсчет времени начнется сразу после того, как будет введено и отправлено название любой страны</p>
                 </section>
 
-                <div className={isHistoryPresent ? 'col-md-7' : 'col-md-12'}>
+                <div className='col-md-7'>
                     {this.renderGameForm()}
 
                     {this.renderTimer()}
@@ -107,11 +111,42 @@ class Game extends React.Component {
                     {this.renderRestCountries()}
                 </div>
 
-                {isHistoryPresent && (
-                    <div className='col-md-5'>
-                        <History history={this.props.history}/>
+                <div className='col-md-5'>
+                    <div className='nav nav-tabs'>
+                        <li
+                            role='presentation'
+                            className={showStatistics ? 'active' : ''}
+                        >
+                            <a
+                                href='#'
+                                onClick={() => {
+                                    this.props.toggleInfoPanel('stats');
+                                }}
+                            >Статистика</a>
+                        </li>
+                        {isHistoryPresent && (
+                            <li
+                                role='presentation'
+                                className={!showStatistics ? 'active' : ''}
+                            >
+                                <a
+                                    href='#'
+                                    onClick={() => {
+                                        this.props.toggleInfoPanel('history');
+                                    }}
+                                >История игр</a>
+                            </li>
+                        )}
                     </div>
-                )}
+                    {showStatistics ? (
+                        <Statistics
+                            statistics={this.props.statistics}
+                            countryProvider={this.props.countryProvider}
+                        />
+                    ) : (
+                        <History history={this.props.history}/>
+                    )}
+                </div>
             </div>
         );
     }
@@ -285,6 +320,8 @@ const mapStateToProps = state => {
         gameUid: state.runner.gameUid,
         history: state.history,
         gameMode: state.gameMode,
+        statistics: state.statistics,
+        infoPanelSwitch: state.infoPanelSwitch,
     };
 };
 
@@ -306,6 +343,12 @@ const mapDispatchToProps = dispatch => {
                 type: 'SET_GAME_MODE',
                 gameMode: gameMode,
             });
+        },
+        toggleInfoPanel: infoPanelName => {
+            dispatch({
+                type: 'TOGGLE_INFO_PANEL',
+                infoPanelName: infoPanelName,
+            })
         }
     }
 };

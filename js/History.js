@@ -26,29 +26,25 @@ export default class History extends React.Component {
         });
 
         return (
-            <div>
-                <h4>История игр</h4>
+            <table className='table'>
+                <thead>
+                    <tr>
+                        <th>Дата</th>
+                        <th>Угаданные страны</th>
+                        <th>Затраченное время</th>
+                    </tr>
+                </thead>
 
-                <table className='table'>
-                    <thead>
-                        <tr>
-                            <th>Дата</th>
-                            <th>Угаданные страны</th>
-                            <th>Затраченное время</th>
+                <tbody>
+                    {historyData.map((historySample, index) => (
+                        <tr key={index}>
+                            <td>{historySample.date}</td>
+                            <td>{historySample.countriesMatched}</td>
+                            <td>{historySample.timeElapsed}</td>
                         </tr>
-                    </thead>
-
-                    <tbody>
-                        {historyData.map((historySample, index) => (
-                            <tr key={index}>
-                                <td>{historySample.date}</td>
-                                <td>{historySample.countriesMatched}</td>
-                                <td>{historySample.timeElapsed}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+                    ))}
+                </tbody>
+            </table>
         );
     }
 }

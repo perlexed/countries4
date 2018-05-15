@@ -1,7 +1,7 @@
 
 export default class GameMode {
-    static MIN2 = '2min';
-    static MIN10 = '10min';
+    static MIN2 = 'min2';
+    static MIN10 = 'min10';
 
     static getLengths() {
         return {
