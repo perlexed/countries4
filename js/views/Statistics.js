@@ -2,8 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import GameMode from '../enums/GameMode';
-import CountryProvider from './components/CountryProvider';
+import GameMode from '../../enums/GameMode';
+import CountryProvider from '../components/CountryProvider';
 
 export default class Statistics extends React.Component {
 

@@ -3,15 +3,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
+import {Collapse} from 'react-collapse';
 
 import Runner from './components/Runner';
 import ActionType from '../enums/ActionType';
-import History from './History';
-import Statistics from './Statistics';
 import TimeHelper from './helpers/TimeHelper';
 import ActionLogger from './components/ActionLogger';
 import CountryProvider from './components/CountryProvider';
-import GameMode from "../enums/GameMode";
+import GameMode from '../enums/GameMode';
+
+import History from './views/History';
+import Statistics from './views/Statistics';
+import MatchedCountries from './views/MatchedCountries';
+import RestCountries from './views/RestCountries';
 
 class Game extends React.Component {
 
@@ -25,6 +29,7 @@ class Game extends React.Component {
         gameMode: PropTypes.oneOf([GameMode.MIN2, GameMode.MIN10]),
         statistics: PropTypes.object,
         infoPanelSwitch: PropTypes.oneOf(['stats', 'history']),
+        matchedCountries: PropTypes.array,
     };
 
     constructor(props) {
@@ -33,6 +38,7 @@ class Game extends React.Component {
         this.state = {
             countriesInput: '',
             inputBlink: null,
+            isDescriptionOpened: true,
         };
 
         this.onCountrySubmit = this.onCountrySubmit.bind(this);
@@ -40,6 +46,10 @@ class Game extends React.Component {
 
     onCountrySubmit(event) {
         event.preventDefault();
+
+        this.setState({
+            isDescriptionOpened: false,
+        });
 
         if (this.props.runnerStatus === Runner.STATUS_FINISHED) {
             return;
@@ -75,7 +85,17 @@ class Game extends React.Component {
             );
         }
 
-        this.inputFieldBlink(checkResult);
+        // Blink input field
+        this.setState({
+            inputBlink: checkResult,
+        });
+
+        setTimeout(() => {
+            this.setState({
+                inputBlink: null,
+            });
+        }, 1000);
+
 
         if (matchedCountryCode && !isDuplicate) {
             this.props.onCountryMatch(matchedCountryCode);
@@ -90,28 +110,50 @@ class Game extends React.Component {
     render() {
         const isHistoryPresent = this.props.history && Object.keys(this.props.history).length > 0;
         const showStatistics = this.props.infoPanelSwitch === 'stats';
+        const toggleDescription = e => {
+            e.preventDefault();
+            this.setState({
+                isDescriptionOpened: !this.state.isDescriptionOpened,
+            })
+        };
 
         return (
             <div className='row'>
-                <h1 className='text-center main-header'>Страноведение</h1>
+                <h1 className='text-center main-header'
+                >
+                    <a
+                        href='#'
+                        onClick={toggleDescription}
+                    >Страноведение</a>
+                </h1>
 
-                <section className='text-center description-text'>
-                    <p>Цель игры - за ограниченное време указать как можно больше названий стран</p>
-                    <p>Указывать следует полное название страны, но для многих стран поддерживается сокращенный вариант написания</p>
-                    <p>Отсчет времени начнется сразу после того, как будет введено и отправлено название любой страны</p>
-                </section>
+                <Collapse isOpened={this.state.isDescriptionOpened}>
+                    <section className='text-center description-text'>
+                        <p>Цель игры - за ограниченное време указать как можно больше названий стран</p>
+                        <p>Указывать следует полное название страны, но для многих стран поддерживается сокращенный вариант написания</p>
+                        <p>Отсчет времени начнется сразу после того, как будет введено и отправлено название любой страны</p>
+                    </section>
+                </Collapse>
 
-                <div className='col-md-7'>
+                <div className='col-md-7 game-block'>
                     {this.renderGameForm()}
 
                     {this.renderTimer()}
 
-                    {this.renderMatchedCountries()}
+                    <MatchedCountries
+                        countryProvider={this.props.countryProvider}
+                        countriesList={this.props.matchedCountries}
+                    />
 
-                    {this.renderRestCountries()}
+                    {this.props.runnerStatus !== Runner.STATUS_FINISHED && (
+                        <RestCountries
+                            countryProvider={this.props.countryProvider}
+                            countriesList={this.props.matchedCountries}
+                        />
+                    )}
                 </div>
 
-                <div className='col-md-5'>
+                <div className='col-md-5 stats-block'>
                     <div className='nav nav-tabs'>
                         <li
                             role='presentation'
@@ -119,7 +161,8 @@ class Game extends React.Component {
                         >
                             <a
                                 href='#'
-                                onClick={() => {
+                                onClick={e => {
+                                    e.preventDefault();
                                     this.props.toggleInfoPanel('stats');
                                 }}
                             >Статистика</a>
@@ -131,7 +174,8 @@ class Game extends React.Component {
                             >
                                 <a
                                     href='#'
-                                    onClick={() => {
+                                    onClick={e => {
+                                        e.preventDefault();
                                         this.props.toggleInfoPanel('history');
                                     }}
                                 >История игр</a>
@@ -200,7 +244,11 @@ class Game extends React.Component {
         }
 
         if (this.props.runnerStatus === Runner.STATUS_FINISHED) {
-            return (<h4>Время вышло</h4>);
+            return (
+                <div className='timer-block'>
+                    <h4>Время вышло</h4>
+                </div>
+            );
         }
 
         const getEnumerableEnding = number => {
@@ -223,7 +271,12 @@ class Game extends React.Component {
             : '';
         const secondsString = timeObject.seconds + ' секунд' + getEnumerableEnding(timeObject.seconds);
 
-        return (<h4>Осталось времени:{minutesString} {secondsString}</h4>);
+        return (
+            <div className='timer'>
+                <div className='timer__label'>Осталось времени:</div>
+                <div className='timer__numbers'>{minutesString} {secondsString}</div>
+            </div>
+        );
     }
 
     renderGameModeSwitcher() {
@@ -266,49 +319,6 @@ class Game extends React.Component {
                 </div>
             </div>
         );
-    }
-
-    renderRestCountries() {
-        if (this.props.runnerStatus !== Runner.STATUS_FINISHED) {
-            return null;
-        }
-
-        const restCountries = this.props.countryProvider.getRestCountries(this.props.matchedCountries);
-
-        return (
-            <div className='rest-countries'>
-                <h4>Оставшиеся страны:</h4>
-                <div className='rest-countries__container' style={{
-                    columnCount: 3,
-                }}>
-                    {restCountries.map((countryName, id) => (
-                        <div key={id}>{countryName}</div>
-                    ))}
-                </div>
-            </div>
-        )
-    }
-
-    renderMatchedCountries() {
-        return (
-            <div className='matched-countries-list'>
-                {this.props.matchedCountries.map((countryCode, index) => (
-                    <div key={index}>{this.props.countryProvider.getByCode(countryCode).name}</div>
-                ))}
-            </div>
-        );
-    }
-
-    inputFieldBlink(blinkType) {
-        this.setState({
-            inputBlink: blinkType,
-        });
-
-        setTimeout(() => {
-            this.setState({
-                inputBlink: null,
-            });
-        }, 1000);
     }
 }
 
