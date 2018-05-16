@@ -8,7 +8,6 @@ export default class MatchedCountries extends React.PureComponent {
 
     static propTypes = {
         countriesList: PropTypes.array,
-        countryProvider: PropTypes.instanceOf(CountryProvider),
     };
 
     render() {
@@ -22,7 +21,7 @@ export default class MatchedCountries extends React.PureComponent {
 
                 <div className='matched-countries__container'>
                     {this.props.countriesList.map((countryCode, index) => (
-                        <div key={index}>{this.props.countryProvider.getByCode(countryCode).name}</div>
+                        <div key={index}>{CountryProvider.getNameByCode(countryCode)}</div>
                     ))}
                 </div>
             </div>

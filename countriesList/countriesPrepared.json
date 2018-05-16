@@ -1,0 +1,1257 @@
+{
+  "ABH": {
+    "shortName": "Абхазия",
+    "fullName": "Республика Абхазия",
+    "aliases": []
+  },
+  "AUS": {
+    "shortName": "Австралия",
+    "fullName": "",
+    "aliases": []
+  },
+  "AUT": {
+    "shortName": "Австрия",
+    "fullName": "Австрийская Республика",
+    "aliases": []
+  },
+  "AZE": {
+    "shortName": "Азербайджан",
+    "fullName": "Республика Азербайджан",
+    "aliases": []
+  },
+  "ALB": {
+    "shortName": "Албания",
+    "fullName": "Республика Албания",
+    "aliases": []
+  },
+  "DZA": {
+    "shortName": "Алжир",
+    "fullName": "Алжирская Народная Демократическая Республика",
+    "aliases": []
+  },
+  "ASM": {
+    "shortName": "Американское Самоа",
+    "fullName": "",
+    "aliases": []
+  },
+  "AIA": {
+    "shortName": "Ангилья",
+    "fullName": "",
+    "aliases": []
+  },
+  "AGO": {
+    "shortName": "Ангола",
+    "fullName": "Республика Ангола",
+    "aliases": []
+  },
+  "AND": {
+    "shortName": "Андорра",
+    "fullName": "Княжество Андорра",
+    "aliases": []
+  },
+  "ATA": {
+    "shortName": "Антарктида",
+    "fullName": "",
+    "aliases": []
+  },
+  "ATG": {
+    "shortName": "Антигуа и Барбуда",
+    "fullName": "",
+    "aliases": []
+  },
+  "ARG": {
+    "shortName": "Аргентина",
+    "fullName": "Аргентинская Республика",
+    "aliases": []
+  },
+  "ARM": {
+    "shortName": "Армения",
+    "fullName": "Республика Армения",
+    "aliases": []
+  },
+  "ABW": {
+    "shortName": "Аруба",
+    "fullName": "",
+    "aliases": []
+  },
+  "AFG": {
+    "shortName": "Афганистан",
+    "fullName": "Переходное Исламское Государство Афганистан",
+    "aliases": []
+  },
+  "BHS": {
+    "shortName": "Багамы",
+    "fullName": "Содружество Багамы",
+    "aliases": []
+  },
+  "BGD": {
+    "shortName": "Бангладеш",
+    "fullName": "Народная Республика Бангладеш",
+    "aliases": []
+  },
+  "BRB": {
+    "shortName": "Барбадос",
+    "fullName": "",
+    "aliases": []
+  },
+  "BHR": {
+    "shortName": "Бахрейн",
+    "fullName": "Королевство Бахрейн",
+    "aliases": []
+  },
+  "BLR": {
+    "shortName": "Беларусь",
+    "fullName": "Республика Беларусь",
+    "aliases": []
+  },
+  "BLZ": {
+    "shortName": "Белиз",
+    "fullName": "",
+    "aliases": []
+  },
+  "BEL": {
+    "shortName": "Бельгия",
+    "fullName": "Королевство Бельгии",
+    "aliases": []
+  },
+  "BEN": {
+    "shortName": "Бенин",
+    "fullName": "Республика Бенин",
+    "aliases": []
+  },
+  "BMU": {
+    "shortName": "Бермуды",
+    "fullName": "",
+    "aliases": []
+  },
+  "BGR": {
+    "shortName": "Болгария",
+    "fullName": "Республика Болгария",
+    "aliases": []
+  },
+  "BOL": {
+    "shortName": "Боливия, Многонациональное Государство",
+    "fullName": "Многонациональное Государство Боливия",
+    "aliases": ["Боливия"]
+  },
+  "BES": {
+    "shortName": "Бонайре, Саба и Синт-Эстатиус",
+    "fullName": "",
+    "aliases": []
+  },
+  "BIH": {
+    "shortName": "Босния и Герцеговина",
+    "fullName": "",
+    "aliases": []
+  },
+  "BWA": {
+    "shortName": "Ботсвана",
+    "fullName": "Республика Ботсвана",
+    "aliases": []
+  },
+  "BRA": {
+    "shortName": "Бразилия",
+    "fullName": "Федеративная Республика Бразилия",
+    "aliases": []
+  },
+  "IOT": {
+    "shortName": "Британская территория в Индийском океане",
+    "fullName": "",
+    "aliases": []
+  },
+  "BRN": {
+    "shortName": "Бруней-Даруссалам",
+    "fullName": "",
+    "aliases": ["Бруней"]
+  },
+  "BFA": {
+    "shortName": "Буркина-Фасо",
+    "fullName": "",
+    "aliases": []
+  },
+  "BDI": {
+    "shortName": "Бурунди",
+    "fullName": "Республика Бурунди",
+    "aliases": []
+  },
+  "BTN": {
+    "shortName": "Бутан",
+    "fullName": "Королевство Бутан",
+    "aliases": []
+  },
+  "VUT": {
+    "shortName": "Вануату",
+    "fullName": "Республика Вануату",
+    "aliases": []
+  },
+  "HUN": {
+    "shortName": "Венгрия",
+    "fullName": "Венгерская Республика",
+    "aliases": []
+  },
+  "VEN": {
+    "shortName": "Венесуэла Боливарианская Республика",
+    "fullName": "Боливарийская Республика Венесуэла",
+    "aliases": ["Венесуэла"]
+  },
+  "VGB": {
+    "shortName": "Виргинские острова, Британские",
+    "fullName": "Британские Виргинские острова",
+    "aliases": []
+  },
+  "VIR": {
+    "shortName": "Виргинские острова, США",
+    "fullName": "Виргинские острова Соединенных Штатов",
+    "aliases": []
+  },
+  "VNM": {
+    "shortName": "Вьетнам",
+    "fullName": "Социалистическая Республика Вьетнам",
+    "aliases": []
+  },
+  "GAB": {
+    "shortName": "Габон",
+    "fullName": "Габонская Республика",
+    "aliases": []
+  },
+  "HTI": {
+    "shortName": "Гаити",
+    "fullName": "Республика Гаити",
+    "aliases": []
+  },
+  "GUY": {
+    "shortName": "Гайана",
+    "fullName": "Республика Гайана",
+    "aliases": []
+  },
+  "GMB": {
+    "shortName": "Гамбия",
+    "fullName": "Республика Гамбия",
+    "aliases": []
+  },
+  "GHA": {
+    "shortName": "Гана",
+    "fullName": "Республика Гана",
+    "aliases": []
+  },
+  "GLP": {
+    "shortName": "Гваделупа",
+    "fullName": "",
+    "aliases": []
+  },
+  "GTM": {
+    "shortName": "Гватемала",
+    "fullName": "Республика Гватемала",
+    "aliases": []
+  },
+  "GIN": {
+    "shortName": "Гвинея",
+    "fullName": "Гвинейская Республика",
+    "aliases": []
+  },
+  "GNB": {
+    "shortName": "Гвинея-Бисау",
+    "fullName": "Республика Гвинея-Бисау",
+    "aliases": []
+  },
+  "DEU": {
+    "shortName": "Германия",
+    "fullName": "Федеративная Республика Германия",
+    "aliases": []
+  },
+  "GGY": {
+    "shortName": "Гернси",
+    "fullName": "",
+    "aliases": []
+  },
+  "GIB": {
+    "shortName": "Гибралтар",
+    "fullName": "",
+    "aliases": []
+  },
+  "HND": {
+    "shortName": "Гондурас",
+    "fullName": "Республика Гондурас",
+    "aliases": []
+  },
+  "HKG": {
+    "shortName": "Гонконг",
+    "fullName": "Специальный  административный  регион Китая Гонконг",
+    "aliases": []
+  },
+  "GRD": {
+    "shortName": "Гренада",
+    "fullName": "",
+    "aliases": []
+  },
+  "GRL": {
+    "shortName": "Гренландия",
+    "fullName": "",
+    "aliases": []
+  },
+  "GRC": {
+    "shortName": "Греция",
+    "fullName": "Греческая Республика",
+    "aliases": []
+  },
+  "GEO": {
+    "shortName": "Грузия",
+    "fullName": "",
+    "aliases": []
+  },
+  "GUM": {
+    "shortName": "Гуам",
+    "fullName": "",
+    "aliases": []
+  },
+  "DNK": {
+    "shortName": "Дания",
+    "fullName": "Королевство Дания",
+    "aliases": []
+  },
+  "JEY": {
+    "shortName": "Джерси",
+    "fullName": "",
+    "aliases": []
+  },
+  "DJI": {
+    "shortName": "Джибути",
+    "fullName": "Республика Джибути",
+    "aliases": []
+  },
+  "DMA": {
+    "shortName": "Доминика",
+    "fullName": "Содружество Доминики",
+    "aliases": []
+  },
+  "DOM": {
+    "shortName": "Доминиканская Республика",
+    "fullName": "",
+    "aliases": ["Доминикана"]
+  },
+  "EGY": {
+    "shortName": "Египет",
+    "fullName": "Арабская Республика Египет",
+    "aliases": []
+  },
+  "ZMB": {
+    "shortName": "Замбия",
+    "fullName": "Республика Замбия",
+    "aliases": []
+  },
+  "ESH": {
+    "shortName": "Западная Сахара",
+    "fullName": "",
+    "aliases": []
+  },
+  "ZWE": {
+    "shortName": "Зимбабве",
+    "fullName": "Республика Зимбабве",
+    "aliases": []
+  },
+  "ISR": {
+    "shortName": "Израиль",
+    "fullName": "Государство Израиль",
+    "aliases": []
+  },
+  "IND": {
+    "shortName": "Индия",
+    "fullName": "Республика Индия",
+    "aliases": []
+  },
+  "IDN": {
+    "shortName": "Индонезия",
+    "fullName": "Республика Индонезия",
+    "aliases": []
+  },
+  "JOR": {
+    "shortName": "Иордания",
+    "fullName": "Иорданское Хашимитское Королевство",
+    "aliases": []
+  },
+  "IRQ": {
+    "shortName": "Ирак",
+    "fullName": "Республика Ирак",
+    "aliases": []
+  },
+  "IRN": {
+    "shortName": "Иран, Исламская Республика",
+    "fullName": "Исламская Республика Иран",
+    "aliases": ["Иран"]
+  },
+  "IRL": {
+    "shortName": "Ирландия",
+    "fullName": "",
+    "aliases": []
+  },
+  "ISL": {
+    "shortName": "Исландия",
+    "fullName": "Республика Исландия",
+    "aliases": []
+  },
+  "ESP": {
+    "shortName": "Испания",
+    "fullName": "Королевство Испания",
+    "aliases": []
+  },
+  "ITA": {
+    "shortName": "Италия",
+    "fullName": "Итальянская Республика",
+    "aliases": []
+  },
+  "YEM": {
+    "shortName": "Йемен",
+    "fullName": "Йеменская Республика",
+    "aliases": []
+  },
+  "CPV": {
+    "shortName": "Кабо-Верде",
+    "fullName": "Республика Кабо-Верде",
+    "aliases": []
+  },
+  "KAZ": {
+    "shortName": "Казахстан",
+    "fullName": "Республика Казахстан",
+    "aliases": []
+  },
+  "KHM": {
+    "shortName": "Камбоджа",
+    "fullName": "Королевство Камбоджа",
+    "aliases": []
+  },
+  "CMR": {
+    "shortName": "Камерун",
+    "fullName": "Республика Камерун",
+    "aliases": []
+  },
+  "CAN": {
+    "shortName": "Канада",
+    "fullName": "",
+    "aliases": []
+  },
+  "QAT": {
+    "shortName": "Катар",
+    "fullName": "Государство Катар",
+    "aliases": []
+  },
+  "KEN": {
+    "shortName": "Кения",
+    "fullName": "Республика Кения",
+    "aliases": []
+  },
+  "CYP": {
+    "shortName": "Кипр",
+    "fullName": "Республика Кипр",
+    "aliases": []
+  },
+  "KGZ": {
+    "shortName": "Киргизия",
+    "fullName": "Киргизская Республика",
+    "aliases": []
+  },
+  "KIR": {
+    "shortName": "Кирибати",
+    "fullName": "Республика Кирибати",
+    "aliases": []
+  },
+  "CHN": {
+    "shortName": "Китай",
+    "fullName": "Китайская Народная Республика",
+    "aliases": []
+  },
+  "CCK": {
+    "shortName": "Кокосовые (Килинг) острова",
+    "fullName": "",
+    "aliases": ["Кокосовые острова"]
+  },
+  "COL": {
+    "shortName": "Колумбия",
+    "fullName": "Республика Колумбия",
+    "aliases": []
+  },
+  "COM": {
+    "shortName": "Коморы",
+    "fullName": "Союз Коморы",
+    "aliases": []
+  },
+  "COG": {
+    "shortName": "Конго",
+    "fullName": "Республика Конго",
+    "aliases": []
+  },
+  "COD": {
+    "shortName": "Конго, Демократическая Республика",
+    "fullName": "Демократическая Республика Конго",
+    "aliases": []
+  },
+  "PRK": {
+    "shortName": "Корея, Народно-Демократическая Республика",
+    "fullName": "Корейская Народно-Демократическая Республика",
+    "aliases": ["Северная Корея", "КНДР"]
+  },
+  "KOR": {
+    "shortName": "Корея, Республика",
+    "fullName": "Республика Корея",
+    "aliases": ["Южная Корея"]
+  },
+  "CRI": {
+    "shortName": "Коста-Рика",
+    "fullName": "Республика Коста-Рика",
+    "aliases": []
+  },
+  "CIV": {
+    "shortName": "Кот д'Ивуар",
+    "fullName": "Республика Кот д'Ивуар",
+    "aliases": []
+  },
+  "CUB": {
+    "shortName": "Куба",
+    "fullName": "Республика Куба",
+    "aliases": []
+  },
+  "KWT": {
+    "shortName": "Кувейт",
+    "fullName": "Государство Кувейт",
+    "aliases": []
+  },
+  "CUW": {
+    "shortName": "Кюрасао",
+    "fullName": "",
+    "aliases": []
+  },
+  "LAO": {
+    "shortName": "Лаос",
+    "fullName": "Лаосская Народно-Демократическая Республика",
+    "aliases": []
+  },
+  "LVA": {
+    "shortName": "Латвия",
+    "fullName": "Латвийская Республика",
+    "aliases": []
+  },
+  "LSO": {
+    "shortName": "Лесото",
+    "fullName": "Королевство Лесото",
+    "aliases": []
+  },
+  "LBN": {
+    "shortName": "Ливан",
+    "fullName": "Ливанская Республика",
+    "aliases": []
+  },
+  "LBY": {
+    "shortName": "Ливийская Арабская Джамахирия",
+    "fullName": "Социалистическая Народная Ливийская Арабская Джамахирия",
+    "aliases": ["Ливия"]
+  },
+  "LBR": {
+    "shortName": "Либерия",
+    "fullName": "Республика Либерия",
+    "aliases": []
+  },
+  "LIE": {
+    "shortName": "Лихтенштейн",
+    "fullName": "Княжество Лихтенштейн",
+    "aliases": []
+  },
+  "LTU": {
+    "shortName": "Литва",
+    "fullName": "Литовская Республика",
+    "aliases": []
+  },
+  "LUX": {
+    "shortName": "Люксембург",
+    "fullName": "Великое Герцогство Люксембург",
+    "aliases": []
+  },
+  "MUS": {
+    "shortName": "Маврикий",
+    "fullName": "Республика Маврикий",
+    "aliases": []
+  },
+  "MRT": {
+    "shortName": "Мавритания",
+    "fullName": "Исламская Республика Мавритания",
+    "aliases": []
+  },
+  "MDG": {
+    "shortName": "Мадагаскар",
+    "fullName": "Республика Мадагаскар",
+    "aliases": []
+  },
+  "MYT": {
+    "shortName": "Майотта",
+    "fullName": "",
+    "aliases": []
+  },
+  "MAC": {
+    "shortName": "Макао",
+    "fullName": "Специальный административный регион Китая Макао",
+    "aliases": []
+  },
+  "MWI": {
+    "shortName": "Малави",
+    "fullName": "Республика Малави",
+    "aliases": []
+  },
+  "MYS": {
+    "shortName": "Малайзия",
+    "fullName": "",
+    "aliases": []
+  },
+  "MLI": {
+    "shortName": "Мали",
+    "fullName": "Республика Мали",
+    "aliases": []
+  },
+  "UMI": {
+    "shortName": "Малые Тихоокеанские отдаленные острова Соединенных Штатов",
+    "fullName": "",
+    "aliases": []
+  },
+  "MDV": {
+    "shortName": "Мальдивы",
+    "fullName": "Мальдивская Республика",
+    "aliases": []
+  },
+  "MLT": {
+    "shortName": "Мальта",
+    "fullName": "Республика Мальта",
+    "aliases": []
+  },
+  "MAR": {
+    "shortName": "Марокко",
+    "fullName": "Королевство Марокко",
+    "aliases": []
+  },
+  "MTQ": {
+    "shortName": "Мартиника",
+    "fullName": "",
+    "aliases": []
+  },
+  "MHL": {
+    "shortName": "Маршалловы острова",
+    "fullName": "Республика Маршалловы острова",
+    "aliases": []
+  },
+  "MEX": {
+    "shortName": "Мексика",
+    "fullName": "Мексиканские Соединенные Штаты",
+    "aliases": []
+  },
+  "FSM": {
+    "shortName": "Микронезия, Федеративные Штаты",
+    "fullName": "Федеративные штаты Микронезии",
+    "aliases": ["Микронезия"]
+  },
+  "MOZ": {
+    "shortName": "Мозамбик",
+    "fullName": "Республика Мозамбик",
+    "aliases": []
+  },
+  "MDA": {
+    "shortName": "Молдова, Республика",
+    "fullName": "Республика Молдова",
+    "aliases": ["Молдова"]
+  },
+  "MCO": {
+    "shortName": "Монако",
+    "fullName": "Княжество Монако",
+    "aliases": []
+  },
+  "MNG": {
+    "shortName": "Монголия",
+    "fullName": "",
+    "aliases": []
+  },
+  "MSR": {
+    "shortName": "Монтсеррат",
+    "fullName": "",
+    "aliases": []
+  },
+  "MMR": {
+    "shortName": "Мьянма",
+    "fullName": "Союз Мьянма",
+    "aliases": []
+  },
+  "NAM": {
+    "shortName": "Намибия",
+    "fullName": "Республика Намибия",
+    "aliases": []
+  },
+  "NRU": {
+    "shortName": "Науру",
+    "fullName": "Республика Науру",
+    "aliases": []
+  },
+  "NPL": {
+    "shortName": "Непал",
+    "fullName": "Федеративная Демократическая Республика Непал",
+    "aliases": []
+  },
+  "NER": {
+    "shortName": "Нигер",
+    "fullName": "Республика Нигер",
+    "aliases": []
+  },
+  "NGA": {
+    "shortName": "Нигерия",
+    "fullName": "Федеративная Республика Нигерия",
+    "aliases": []
+  },
+  "NLD": {
+    "shortName": "Нидерланды",
+    "fullName": "Королевство Нидерландов",
+    "aliases": []
+  },
+  "NIC": {
+    "shortName": "Никарагуа",
+    "fullName": "Республика Никарагуа",
+    "aliases": []
+  },
+  "NIU": {
+    "shortName": "Ниуэ",
+    "fullName": "Республика Ниуэ",
+    "aliases": []
+  },
+  "NZL": {
+    "shortName": "Новая Зеландия",
+    "fullName": "",
+    "aliases": []
+  },
+  "NCL": {
+    "shortName": "Новая Каледония",
+    "fullName": "",
+    "aliases": []
+  },
+  "NOR": {
+    "shortName": "Норвегия",
+    "fullName": "Королевство Норвегия",
+    "aliases": []
+  },
+  "ARE": {
+    "shortName": "Объединенные Арабские Эмираты",
+    "fullName": "",
+    "aliases": []
+  },
+  "OMN": {
+    "shortName": "Оман",
+    "fullName": "Султанат Оман",
+    "aliases": []
+  },
+  "BVT": {
+    "shortName": "Остров Буве",
+    "fullName": "",
+    "aliases": []
+  },
+  "IMN": {
+    "shortName": "Остров Мэн",
+    "fullName": "",
+    "aliases": []
+  },
+  "NFK": {
+    "shortName": "Остров Норфолк",
+    "fullName": "",
+    "aliases": []
+  },
+  "CXR": {
+    "shortName": "Остров Рождества",
+    "fullName": "",
+    "aliases": []
+  },
+  "HMD": {
+    "shortName": "Остров Херд и острова Макдональд",
+    "fullName": "",
+    "aliases": []
+  },
+  "CYM": {
+    "shortName": "Острова Кайман",
+    "fullName": "",
+    "aliases": []
+  },
+  "COK": {
+    "shortName": "Острова Кука",
+    "fullName": "",
+    "aliases": []
+  },
+  "TCA": {
+    "shortName": "Острова Теркс и Кайкос",
+    "fullName": "",
+    "aliases": []
+  },
+  "PAK": {
+    "shortName": "Пакистан",
+    "fullName": "Исламская Республика Пакистан",
+    "aliases": []
+  },
+  "PLW": {
+    "shortName": "Палау",
+    "fullName": "Республика Палау",
+    "aliases": []
+  },
+  "PSE": {
+    "shortName": "Палестинская территория, оккупированная",
+    "fullName": "Оккупированная Палестинская территория",
+    "aliases": ["Палестина"]
+  },
+  "PAN": {
+    "shortName": "Панама",
+    "fullName": "Республика Панама",
+    "aliases": []
+  },
+  "VAT": {
+    "shortName": "Папский Престол (Государство — город Ватикан)",
+    "fullName": "",
+    "aliases": ["Ватикан"]
+  },
+  "PNG": {
+    "shortName": "Папуа-Новая Гвинея",
+    "fullName": "",
+    "aliases": []
+  },
+  "PRY": {
+    "shortName": "Парагвай",
+    "fullName": "Республика Парагвай",
+    "aliases": []
+  },
+  "PER": {
+    "shortName": "Перу",
+    "fullName": "Республика Перу",
+    "aliases": []
+  },
+  "PCN": {
+    "shortName": "Питкерн",
+    "fullName": "",
+    "aliases": []
+  },
+  "POL": {
+    "shortName": "Польша",
+    "fullName": "Республика Польша",
+    "aliases": []
+  },
+  "PRT": {
+    "shortName": "Португалия",
+    "fullName": "Португальская Республика",
+    "aliases": []
+  },
+  "PRI": {
+    "shortName": "Пуэрто-Рико",
+    "fullName": "",
+    "aliases": []
+  },
+  "MKD": {
+    "shortName": "Республика Македония",
+    "fullName": "",
+    "aliases": ["Македония"]
+  },
+  "REU": {
+    "shortName": "Реюньон",
+    "fullName": "",
+    "aliases": []
+  },
+  "RUS": {
+    "shortName": "Россия",
+    "fullName": "Российская Федерация",
+    "aliases": []
+  },
+  "RWA": {
+    "shortName": "Руанда",
+    "fullName": "Руандийская Республика",
+    "aliases": []
+  },
+  "ROU": {
+    "shortName": "Румыния",
+    "fullName": "",
+    "aliases": []
+  },
+  "WSM": {
+    "shortName": "Самоа",
+    "fullName": "Независимое Государство Самоа",
+    "aliases": []
+  },
+  "SMR": {
+    "shortName": "Сан-Марино",
+    "fullName": "Республика Сан-Марино",
+    "aliases": []
+  },
+  "STP": {
+    "shortName": "Сан-Томе и Принсипи",
+    "fullName": "Демократическая Республика Сан-Томе и Принсипи",
+    "aliases": []
+  },
+  "SAU": {
+    "shortName": "Саудовская Аравия",
+    "fullName": "Королевство Саудовская Аравия",
+    "aliases": []
+  },
+  "SWZ": {
+    "shortName": "Свазиленд",
+    "fullName": "Королевство Свазиленд",
+    "aliases": []
+  },
+  "SHN": {
+    "shortName": "Святая Елена, Остров вознесения, Тристан-да-Кунья",
+    "fullName": "",
+    "aliases": []
+  },
+  "MNP": {
+    "shortName": "Северные Марианские острова",
+    "fullName": "Содружество Северных Марианских островов",
+    "aliases": []
+  },
+  "BLM": {
+    "shortName": "Сен-Бартельми",
+    "fullName": "",
+    "aliases": []
+  },
+  "MAF": {
+    "shortName": "Сен-Мартен",
+    "fullName": "",
+    "aliases": []
+  },
+  "SEN": {
+    "shortName": "Сенегал",
+    "fullName": "Республика Сенегал",
+    "aliases": []
+  },
+  "VCT": {
+    "shortName": "Сент-Винсент и Гренадины",
+    "fullName": "",
+    "aliases": []
+  },
+  "LCA": {
+    "shortName": "Сент-Люсия",
+    "fullName": "",
+    "aliases": []
+  },
+  "KNA": {
+    "shortName": "Сент-Китс и Невис",
+    "fullName": "",
+    "aliases": []
+  },
+  "SPM": {
+    "shortName": "Сент-Пьер и Микелон",
+    "fullName": "",
+    "aliases": []
+  },
+  "SRB": {
+    "shortName": "Сербия",
+    "fullName": "Республика Сербия",
+    "aliases": []
+  },
+  "SYC": {
+    "shortName": "Сейшелы",
+    "fullName": "Республика Сейшелы",
+    "aliases": []
+  },
+  "SGP": {
+    "shortName": "Сингапур",
+    "fullName": "Республика Сингапур",
+    "aliases": []
+  },
+  "SXM": {
+    "shortName": "Синт-Мартен",
+    "fullName": "",
+    "aliases": []
+  },
+  "SYR": {
+    "shortName": "Сирийская Арабская Республика",
+    "fullName": "",
+    "aliases": ["Сирия"]
+  },
+  "SVK": {
+    "shortName": "Словакия",
+    "fullName": "Словацкая Республика",
+    "aliases": []
+  },
+  "SVN": {
+    "shortName": "Словения",
+    "fullName": "Республика Словения",
+    "aliases": []
+  },
+  "GBR": {
+    "shortName": "Соединенное Королевство",
+    "fullName": "Соединенное Королевство Великобритании и Северной Ирландии",
+    "aliases": ["Великобритания"]
+  },
+  "USA": {
+    "shortName": "Соединенные Штаты",
+    "fullName": "Соединенные Штаты Америки",
+    "aliases": []
+  },
+  "SLB": {
+    "shortName": "Соломоновы острова",
+    "fullName": "",
+    "aliases": []
+  },
+  "SOM": {
+    "shortName": "Сомали",
+    "fullName": "Сомалийская Республика",
+    "aliases": []
+  },
+  "SDN": {
+    "shortName": "Судан",
+    "fullName": "Республика Судан",
+    "aliases": []
+  },
+  "SUR": {
+    "shortName": "Суринам",
+    "fullName": "Республика Суринам",
+    "aliases": []
+  },
+  "SLE": {
+    "shortName": "Сьерра-Леоне",
+    "fullName": "Республика Сьерра-Леоне",
+    "aliases": []
+  },
+  "TJK": {
+    "shortName": "Таджикистан",
+    "fullName": "Республика Таджикистан",
+    "aliases": []
+  },
+  "THA": {
+    "shortName": "Таиланд",
+    "fullName": "Королевство Таиланд",
+    "aliases": []
+  },
+  "TWN": {
+    "shortName": "Тайвань (Китай)",
+    "fullName": "",
+    "aliases": ["Тайвань"]
+  },
+  "TZA": {
+    "shortName": "Танзания, Объединенная Республика",
+    "fullName": "Объединенная Республика Танзания",
+    "aliases": ["Танзания"]
+  },
+  "TLS": {
+    "shortName": "Тимор-Лесте",
+    "fullName": "Демократическая Республика Тимор-Лесте",
+    "aliases": []
+  },
+  "TGO": {
+    "shortName": "Того",
+    "fullName": "Тоголезская Республика",
+    "aliases": []
+  },
+  "TKL": {
+    "shortName": "Токелау",
+    "fullName": "",
+    "aliases": []
+  },
+  "TON": {
+    "shortName": "Тонга",
+    "fullName": "Королевство Тонга",
+    "aliases": []
+  },
+  "TTO": {
+    "shortName": "Тринидад и Тобаго",
+    "fullName": "Республика Тринидад и Тобаго",
+    "aliases": []
+  },
+  "TUV": {
+    "shortName": "Тувалу",
+    "fullName": "",
+    "aliases": []
+  },
+  "TUN": {
+    "shortName": "Тунис",
+    "fullName": "Тунисская Республика",
+    "aliases": []
+  },
+  "TKM": {
+    "shortName": "Туркмения",
+    "fullName": "Туркменистан",
+    "aliases": []
+  },
+  "TUR": {
+    "shortName": "Турция",
+    "fullName": "Турецкая Республика",
+    "aliases": []
+  },
+  "UGA": {
+    "shortName": "Уганда",
+    "fullName": "Республика Уганда",
+    "aliases": []
+  },
+  "UZB": {
+    "shortName": "Узбекистан",
+    "fullName": "Республика Узбекистан",
+    "aliases": []
+  },
+  "UKR": {
+    "shortName": "Украина",
+    "fullName": "",
+    "aliases": []
+  },
+  "WLF": {
+    "shortName": "Уоллис и Футуна",
+    "fullName": "",
+    "aliases": []
+  },
+  "URY": {
+    "shortName": "Уругвай",
+    "fullName": "Восточная Республика Уругвай",
+    "aliases": []
+  },
+  "FRO": {
+    "shortName": "Фарерские острова",
+    "fullName": "",
+    "aliases": []
+  },
+  "FJI": {
+    "shortName": "Фиджи",
+    "fullName": "Республика островов Фиджи",
+    "aliases": []
+  },
+  "PHL": {
+    "shortName": "Филиппины",
+    "fullName": "Республика Филиппины",
+    "aliases": []
+  },
+  "FIN": {
+    "shortName": "Финляндия",
+    "fullName": "Финляндская Республика",
+    "aliases": []
+  },
+  "FLK": {
+    "shortName": "Фолклендские острова (Мальвинские)",
+    "fullName": "",
+    "aliases": ["Фолклендские острова"]
+  },
+  "FRA": {
+    "shortName": "Франция",
+    "fullName": "Французская Республика",
+    "aliases": []
+  },
+  "GUF": {
+    "shortName": "Французская Гвиана",
+    "fullName": "",
+    "aliases": ["Гвиана"]
+  },
+  "PYF": {
+    "shortName": "Французская Полинезия",
+    "fullName": "",
+    "aliases": ["Полинезия"]
+  },
+  "ATF": {
+    "shortName": "Французские Южные территории",
+    "fullName": "",
+    "aliases": []
+  },
+  "HRV": {
+    "shortName": "Хорватия",
+    "fullName": "Республика Хорватия",
+    "aliases": []
+  },
+  "CAF": {
+    "shortName": "Центрально-Африканская Республика",
+    "fullName": "",
+    "aliases": ["ЦАР"]
+  },
+  "TCD": {
+    "shortName": "Чад",
+    "fullName": "Республика Чад",
+    "aliases": []
+  },
+  "MNE": {
+    "shortName": "Черногория",
+    "fullName": "Республика Черногория",
+    "aliases": []
+  },
+  "CZE": {
+    "shortName": "Чешская Республика",
+    "fullName": "",
+    "aliases": ["Чехия"]
+  },
+  "CHL": {
+    "shortName": "Чили",
+    "fullName": "Республика Чили",
+    "aliases": []
+  },
+  "CHE": {
+    "shortName": "Швейцария",
+    "fullName": "Швейцарская Конфедерация",
+    "aliases": []
+  },
+  "SWE": {
+    "shortName": "Швеция",
+    "fullName": "Королевство Швеция",
+    "aliases": []
+  },
+  "SJM": {
+    "shortName": "Шпицберген и Ян Майен",
+    "fullName": "",
+    "aliases": []
+  },
+  "LKA": {
+    "shortName": "Шри-Ланка",
+    "fullName": "Демократическая Социалистическая Республика Шри-Ланка",
+    "aliases": []
+  },
+  "ECU": {
+    "shortName": "Эквадор",
+    "fullName": "Республика Эквадор",
+    "aliases": []
+  },
+  "GNQ": {
+    "shortName": "Экваториальная Гвинея",
+    "fullName": "Республика Экваториальная Гвинея",
+    "aliases": []
+  },
+  "ALA": {
+    "shortName": "Эландские острова",
+    "fullName": "",
+    "aliases": []
+  },
+  "SLV": {
+    "shortName": "Эль-Сальвадор",
+    "fullName": "Республика Эль-Сальвадор",
+    "aliases": []
+  },
+  "ERI": {
+    "shortName": "Эритрея",
+    "fullName": "",
+    "aliases": []
+  },
+  "EST": {
+    "shortName": "Эстония",
+    "fullName": "Эстонская Республика",
+    "aliases": []
+  },
+  "ETH": {
+    "shortName": "Эфиопия",
+    "fullName": "Федеративная Демократическая Республика Эфиопия",
+    "aliases": []
+  },
+  "ZAF": {
+    "shortName": "Южная Африка",
+    "fullName": "Южно-Африканская Республика",
+    "aliases": []
+  },
+  "SGS": {
+    "shortName": "Южная Джорджия и Южные Сандвичевы острова",
+    "fullName": "",
+    "aliases": []
+  },
+  "OST": {
+    "shortName": "Южная Осетия",
+    "fullName": "Республика Южная Осетия",
+    "aliases": []
+  },
+  "SSD": {
+    "shortName": "Южный Судан",
+    "fullName": "",
+    "aliases": []
+  },
+  "JAM": {
+    "shortName": "Ямайка",
+    "fullName": "",
+    "aliases": []
+  },
+  "JPN": {
+    "shortName": "Япония",
+    "fullName": "",
+    "aliases": []
+  }
+}

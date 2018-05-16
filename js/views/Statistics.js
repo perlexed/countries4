@@ -18,7 +18,6 @@ export default class Statistics extends React.Component {
                 percentage: PropTypes.number,
             })),
         }),
-        countryProvider: PropTypes.instanceOf(CountryProvider),
     };
 
     render() {
@@ -43,7 +42,7 @@ export default class Statistics extends React.Component {
                     {this.props.statistics.popularCountries.map((countryData, index) => (
                         <li key={index} className='list-group-item'>
                             <span className='badge'>{countryData.percentage}%</span>
-                            {this.props.countryProvider.getPreparedByCode(countryData.code).shortName}
+                            {CountryProvider.getPreparedByCode(countryData.code).shortName}
                         </li>
                     ))}
                 </ul>

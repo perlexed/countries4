@@ -10,7 +10,6 @@ import combinedReducers from './reducers/index';
 import Game from './Game';
 import Runner from './components/Runner';
 import ActionLogger from './components/ActionLogger';
-import CountryProvider from "./components/CountryProvider";
 import NetworkHelper from "./components/NetworkHelper";
 import GameMode from '../enums/GameMode';
 
@@ -62,7 +61,6 @@ store.subscribe(() => {
 const networkHelper = new NetworkHelper(applicationConfig.baseUrl);
 const actionLogger = new ActionLogger(store, networkHelper);
 const runner = new Runner(store, actionLogger, networkHelper);
-const countryProvider = new CountryProvider();
 
 ReactDOM.render(
     <Provider store={store}>
@@ -70,7 +68,6 @@ ReactDOM.render(
             userUid={applicationConfig.userUid}
             runner={runner}
             actionLogger={actionLogger}
-            countryProvider={countryProvider}
         />
     </Provider>,
     document.getElementById('gameContainer')

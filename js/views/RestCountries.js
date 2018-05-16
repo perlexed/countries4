@@ -8,11 +8,10 @@ export default class RestCountries extends React.PureComponent {
 
     static propTypes = {
         countriesList: PropTypes.array,
-        countryProvider: PropTypes.instanceOf(CountryProvider),
     };
 
     render() {
-        const restCountries = this.props.countryProvider.getRestCountries(this.props.countriesList);
+        const restCountries = CountryProvider.getRestCountries(this.props.countriesList);
 
         if (!restCountries.length) {
             return null;

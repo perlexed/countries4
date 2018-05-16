@@ -25,7 +25,6 @@ class Game extends React.Component {
         runner: PropTypes.instanceOf(Runner),
         store: PropTypes.object,
         actionLogger: PropTypes.instanceOf(ActionLogger),
-        countryProvider: PropTypes.instanceOf(CountryProvider),
         gameMode: PropTypes.oneOf([GameMode.MIN2, GameMode.MIN10]),
         statistics: PropTypes.object,
         infoPanelSwitch: PropTypes.oneOf(['stats', 'history']),
@@ -63,7 +62,7 @@ class Game extends React.Component {
             this.props.runner.start();
         }
 
-        const matchedCountryCode = this.props.countryProvider.check(this.state.countriesInput);
+        const matchedCountryCode = CountryProvider.checkCountryName(this.state.countriesInput);
         const isDuplicate = matchedCountryCode && this.props.matchedCountries.indexOf(matchedCountryCode) !== -1;
 
         const checkResult = !matchedCountryCode
@@ -141,13 +140,11 @@ class Game extends React.Component {
                     {this.renderTimer()}
 
                     <MatchedCountries
-                        countryProvider={this.props.countryProvider}
                         countriesList={this.props.matchedCountries}
                     />
 
-                    {this.props.runnerStatus !== Runner.STATUS_FINISHED && (
+                    {this.props.runnerStatus === Runner.STATUS_FINISHED && (
                         <RestCountries
-                            countryProvider={this.props.countryProvider}
                             countriesList={this.props.matchedCountries}
                         />
                     )}
@@ -185,7 +182,6 @@ class Game extends React.Component {
                     {showStatistics ? (
                         <Statistics
                             statistics={this.props.statistics}
-                            countryProvider={this.props.countryProvider}
                         />
                     ) : (
                         <History history={this.props.history}/>
