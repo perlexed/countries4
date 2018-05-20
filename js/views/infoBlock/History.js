@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import TimeHelper from '../helpers/TimeHelper';
+import TimeHelper from '../../helpers/TimeHelper';
 
 export default class History extends React.Component {
 
