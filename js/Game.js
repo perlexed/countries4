@@ -62,13 +62,19 @@ class Game extends React.Component {
             this.props.runner.start();
         }
 
-        const matchedCountryCode = CountryProvider.checkCountryName(this.state.countriesInput);
+        const checkResultData = CountryProvider.checkCountryName(this.state.countriesInput);
+        const matchedCountryCode = checkResultData.result;
         const isDuplicate = matchedCountryCode && this.props.matchedCountries.indexOf(matchedCountryCode) !== -1;
 
         const checkResult = !matchedCountryCode
             ? 'error'
             : (isDuplicate
-                ? 'duplicate'
+                // If match is not exact, then don't mark input as duplicate
+                // so that it won't match wrongfully spelled country as other country.
+                ? (!checkResultData.exactMatch
+                        ? 'error'
+                        : 'duplicate'
+                )
                 : 'success'
             );
 
