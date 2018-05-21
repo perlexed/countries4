@@ -80,11 +80,11 @@ export default class CountryProvider {
         // Search softens with the larger input string
         const minSearchDistance = (stringLength => {
             if (stringLength < 16) {
-                return 10;
+                return 1;
             } else if (stringLength < 30) {
-                return 20;
+                return 2;
             } else {
-                return 30;
+                return 3;
             }
         })(inputCountryName.length);
 
