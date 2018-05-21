@@ -16,7 +16,7 @@ export default class CountryProvider {
      *          result - the check result itself
      */
     static checkCountryName(countryName) {
-        countryName = countryName.trim();
+        countryName = CountryProvider._prepareName(countryName.trim());
 
         if (!countryName) {
             return {
@@ -59,12 +59,6 @@ export default class CountryProvider {
      * @private
      */
     static _strictNameCheck(countryName) {
-        countryName = CountryProvider._prepareName(countryName);
-
-        if (!countryName.length) {
-            return null;
-        }
-
         const matchingCountryHash = Object.entries(preparedList).find(countryArray => {
             return countryName === CountryProvider._prepareName(countryArray[1].shortName)
                 || countryName === CountryProvider._prepareName(countryArray[1].fullName)
@@ -86,11 +80,11 @@ export default class CountryProvider {
         // Search softens with the larger input string
         const minSearchDistance = (stringLength => {
             if (stringLength < 16) {
-                return 1;
+                return 10;
             } else if (stringLength < 30) {
-                return 2;
+                return 20;
             } else {
-                return 3;
+                return 30;
             }
         })(inputCountryName.length);
 
