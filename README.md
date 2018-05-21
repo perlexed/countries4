@@ -2,6 +2,8 @@
 Countries: The Game
 -------------------
 
+Try in here: [http://perlexed.net/countries](http://perlexed.net/countries)
+
 ### Trivia
 
 A geographic game. Player has to write as much countries as he can in a limited time.
