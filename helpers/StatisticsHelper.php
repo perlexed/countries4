@@ -7,6 +7,7 @@ use app\enums\ActionType;
 use app\enums\GameMode;
 use app\models\Action;
 use yii\db\Query;
+use yii\helpers\ArrayHelper;
 
 class StatisticsHelper
 {
@@ -33,11 +34,21 @@ class StatisticsHelper
         $gameModes = [GameMode::MIN2, GameMode::MIN10];
 
         return array_map(function($gameMode) {
-            return (int) Action::find()
-                ->select('gameUid')
-                ->where(['gameMode' => $gameMode])
-                ->distinct()
-                ->count();
+            $actionsCountByGameUid = (new Query())
+                ->select(['gameUid', 'count' => 'count(*)'])
+                ->from('actions')
+                ->where([
+                    'gameMode' => $gameMode,
+                    'actionType' => ActionType::COUNTRY_SUCCESS_SUBMIT,
+                ])
+                ->groupBy(['gameUid'])
+                ->all();
+
+            $actionsCount = ArrayHelper::getColumn($actionsCountByGameUid, 'count');
+
+            return count($actionsCountByGameUid)
+                ? ceil(array_sum($actionsCount) / count($actionsCountByGameUid))
+                : 0;
         }, array_combine($gameModes, $gameModes));
     }
 
