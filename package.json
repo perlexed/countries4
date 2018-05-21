@@ -7,8 +7,9 @@
     "axios": "^0.17.1",
     "classnames": "^2.2.5",
     "compare-versions": "^3.2.1",
-    "fuse.js": "^3.2.0",
+    "fast-levenshtein": "^2.0.6",
     "lodash": "^4.17.10",
+    "npm": "^6.0.1",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-collapse": "^4.0.3",
@@ -41,6 +42,6 @@
     "url": "git+https://github.com/perlexed/countries4.git"
   },
   "author": "perlexed",
-  "license": "GPL-3.0-or-later",
+  "license": "GPL-3.0+",
   "homepage": "http://perlexed.net/countries/"
 }

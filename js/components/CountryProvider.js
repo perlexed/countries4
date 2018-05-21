@@ -1,5 +1,5 @@
 
-import Fuse from 'fuse.js';
+import levenshtein from 'fast-levenshtein';
 
 import preparedList from '../../countriesList/countriesPrepared.json';
 
@@ -34,7 +34,7 @@ export default class CountryProvider {
             };
         }
 
-        const fuzzySearchResult = CountryProvider._fuzzySearch(countryName);
+        const fuzzySearchResult = CountryProvider._levenshteinSearch(countryName);
 
         if (!fuzzySearchResult.length) {
             return {
@@ -46,8 +46,8 @@ export default class CountryProvider {
         const fuzzySearchItem = fuzzySearchResult[0];
 
         return {
-            exactMatch: fuzzySearchItem.score === 0,
-            result: fuzzySearchItem.item.code,
+            exactMatch: fuzzySearchItem.minimumDistance === 0,
+            result: fuzzySearchItem.code,
         };
     }
 
@@ -75,47 +75,60 @@ export default class CountryProvider {
     }
 
     /**
-     * Fuzzy search countries
-     * Return the result of the Fuse.search() function (array of the matching countries object along with search score)
+     * Fuzzy search using the Levenshtein distance
      *
-     * @param {string} countryName
-     * @returns {array}
+     * @param inputCountryName
+     * @returns {{code: string, minimumDistance: number}[]}
      * @private
      */
-    static _fuzzySearch(countryName) {
-        const fuseCountriesList = Object.entries(preparedList).map(countryArray => ({
-            code: countryArray[0],
-            info: countryArray[1],
-        }));
+    static _levenshteinSearch(inputCountryName) {
 
-        // Variate search sensitivity with the input string length
-        const getThreshold = stringLength => {
-            if (stringLength < 12) {
-                return 0.15;
+        // Search softens with the larger input string
+        const minSearchDistance = (stringLength => {
+            if (stringLength < 16) {
+                return 1;
+            } else if (stringLength < 30) {
+                return 2;
+            } else {
+                return 3;
             }
+        })(inputCountryName.length);
 
-            if (stringLength < 18) {
-                return 0.12;
+        return Object.entries(preparedList).map(countryArray => {
+            /** @var {{shortName: string, fullName: string, aliases: string[]}} countryData **/
+            const countyData = countryArray[1];
+
+            // Collect all the counry names
+            const stringsToCompare = [
+                countyData.shortName,
+                ...countyData.aliases,
+            ].concat(countyData.fullName ? [countyData.fullName] : []);
+
+            const minimumDistance = stringsToCompare.reduce(
+                (currentMinimumDistance, countryName) => {
+                    const nameDistance = levenshtein.get(inputCountryName, CountryProvider._prepareName(countryName));
+
+                    return currentMinimumDistance === -1 || nameDistance < currentMinimumDistance
+                        ? nameDistance
+                        : currentMinimumDistance;
+                }, -1
+            );
+
+            return {
+                code: countryArray[0],
+                minimumDistance: minimumDistance,
+            };
+        })
+        .filter(distancesData => distancesData.minimumDistance <= minSearchDistance)
+        .sort((distancesData1, distancesData2) => {
+            if (distancesData1.minimumDistance > distancesData2.minimumDistance) {
+                return 1;
+            } else if (distancesData1.minimumDistance < distancesData2.minimumDistance) {
+                return -1;
+            } else {
+                return 0;
             }
-
-            return 0.07;
-        };
-
-        const fuse = new Fuse(fuseCountriesList, {
-            shouldSort: true,
-            includeScore: true,
-            maxPatternLength: 50,
-            threshold: getThreshold(countryName.length),
-            location: 0,
-            distance: 0,
-            keys: [
-                'info.fullName',
-                'info.shortName',
-                'info.aliases',
-            ]
         });
-
-        return fuse.search(countryName);
     }
 
     /**

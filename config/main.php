@@ -19,5 +19,5 @@ return [
     'params' => [
         'adminEmail' => 'admin@example.com',
     ],
-    'version' => '0.4.6',
+    'version' => '1.0.0',
 ];
