@@ -49,3 +49,9 @@ INSTALLATION
     npm install
     ```
 4. Start `webpack watch`/`webpack static` for the development/production js build
+
+PREVIOUS ITERATIONS
+-------------------
+
+1. [https://github.com/perlexed/countries](https://github.com/perlexed/countries)
+2. [https://github.com/perlexed/countries2](https://github.com/perlexed/countries2)
