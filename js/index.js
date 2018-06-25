@@ -12,10 +12,12 @@ import Runner from './components/Runner';
 import ActionLogger from './components/ActionLogger';
 import NetworkHelper from "./components/NetworkHelper";
 import GameMode from '../enums/GameMode';
+import FeedbackForm from "./views/FeedbackForm";
 
 const applicationConfig = JSON.parse(window.APPLICATION_CONFIG);
 delete window.APPLICATION_CONFIG;
 
+// @todo move to reducers
 const defaultState = {
     matchedCountries: [],
     runner: {
@@ -71,4 +73,11 @@ ReactDOM.render(
         />
     </Provider>,
     document.getElementById('gameContainer')
+);
+
+ReactDOM.render(
+    <FeedbackForm
+        networkHelper={networkHelper}
+    />,
+    document.getElementById('feedbackFormContainer')
 );

@@ -17,7 +17,8 @@ return [
         ],
     ],
     'params' => [
-        'adminEmail' => 'admin@example.com',
+        'appEmail' => 'countries@perlexed.net',
+        'adminEmail' => 'perlexed@gmail.com',
     ],
     'version' => '1.0.0',
 ];

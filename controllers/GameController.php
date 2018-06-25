@@ -4,6 +4,7 @@ namespace app\controllers;
 
 
 use app\models\Action;
+use app\models\FeedbackForm;
 use app\models\User;
 use yii\web\Controller;
 use yii\web\Response;
@@ -54,6 +55,18 @@ class GameController extends Controller
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         return Action::getHistoryForUser(Yii::$app->user->getIdentity()->getId());
+    }
+
+    public function actionSendFeedback()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $feedbackForm = new FeedbackForm([
+            'text' => Yii::$app->request->post('text'),
+            'visitorEmail' => Yii::$app->request->post('email'),
+        ]);
+
+        return $feedbackForm->sendFeedback();
     }
 
 }
