@@ -12,7 +12,7 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-    <?php if (Yii::$app->params['googleAnalyticsId']) { ?>
+    <?php if (!empty(Yii::$app->params['googleAnalyticsId'])) { ?>
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121328701-1"></script>
         <script>
