@@ -20,5 +20,5 @@ return [
         'appEmail' => 'countries@perlexed.net',
         'adminEmail' => 'perlexed@gmail.com',
     ],
-    'version' => '1.1.1',
+    'version' => '1.1.3',
 ];

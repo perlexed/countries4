@@ -30,6 +30,7 @@ tests/_output/*
 tests/_support/_generated
 
 config.php
+env_config.php
 
 node_modules/*
 
